@@ -36,7 +36,7 @@ public class HomeAdapter extends BaseAdapter {
     public long getItemId(int position) {
         return 0;
     }
-
+//设置每个条目的页面
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         View view = View.inflate(context,R.layout.item_home,null);
