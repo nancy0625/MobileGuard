@@ -86,12 +86,12 @@ public class VersionUpdateUtils {
             HttpConnectionParams.setConnectionTimeout(client.getParams(),5000);
             /*请求超时*/
             HttpConnectionParams.setSoTimeout(client.getParams(),5000);
-             HttpGet httpGet = new HttpGet("http://172.16.25.14:8000/updateinfo.html");
+             HttpGet httpGet = new HttpGet("http://android2017.duapp.com/updateinfo.html/");
             HttpResponse execute = client.execute(httpGet);
             if(execute.getStatusLine().getStatusCode()==200){
                 //请求和响应都成功了
                 HttpEntity entity = execute.getEntity();
-                String result = EntityUtils.toString(entity,"gbk");
+                String result = EntityUtils.toString(entity,"utf-8");
                 //创建jsonObject对象
                 JSONObject jsonObject = new JSONObject(result);
                 versionEntity = new VersionEntity();
@@ -103,6 +103,9 @@ public class VersionUpdateUtils {
                 versionEntity.apkurl = apkurl;
                 if(!mVersion.equals(versionEntity.versioncode)){
                     //版本号不一样
+                    System.out.println(versionEntity.description);
+                    DownLoadUtils downLoadUtils = new DownLoadUtils();
+                    downLoadUtils.downloadApk(versionEntity.apkurl,"mobileguard.apk",context);
                     handler.sendEmptyMessage(MESSAGE_SHOW_ERROR);
                 }
             }
@@ -134,7 +137,7 @@ public class VersionUpdateUtils {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 initProgressDialog();
-                downloadNewApk(versionEntity.apkurl);
+                //downloadNewApk(versionEntity.apkurl);
             }
         });
     //设置不升级按钮点击升级事件
@@ -159,9 +162,9 @@ public class VersionUpdateUtils {
     /**
      * 下载新版本
      */
-    protected  void downloadNewApk(String apkurl){
+   /* protected  void downloadNewApk(String apkurl){
         DownLoadUtils downLoadUtils = new DownLoadUtils();
-        downLoadUtils.downapk(apkurl,"mnt/sdcard/mobilesafe2.0apk",new DownLoadUtils.MyCallBack(){
+        downLoadUtils.downloadApk(apkurl,"mnt/sdcard/mobilesafe2.0apk",new DownLoadUtils){
             @Override
             public void onSuccess(ResponseInfo<File> arg0) {
                 mProgressDialog.dismiss();
@@ -184,7 +187,7 @@ public class VersionUpdateUtils {
                 mProgressDialog.setProgress((int) current);
             }
         });
-    }
+    }*/
     private void enterHome(){
         handler.sendEmptyMessageDelayed(MESSAGE_ENTERHOME,2000);
     }
