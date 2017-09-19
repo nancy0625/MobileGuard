@@ -25,13 +25,15 @@ public class HomeActivity extends Activity {
         //初始化GridView
         gv_home = (GridView) findViewById(R.id.gv_home);
         gv_home.setAdapter(new HomeAdapter(HomeActivity.this));
+
         //设置条目的点击事件
-   /**  gv_home.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+     gv_home.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 
          //parent代表gridView,view代表每一个条目的view对象，position代表每个条目的位置
          @Override
          public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-             switch (position){
+             System.out.print(position);
+             /*switch (position){
                  case 0://手机防盗
                      if(isSetUpPassword()){
                          //弹出输入密码提示框
@@ -67,16 +69,16 @@ public class HomeActivity extends Activity {
                      break;
 
 
-             }
+             }*/
          }
-     }); */
+     });
     }
 
     /**
      * 开启新的Activity不关闭自己
      * @param cls,新的Activity的字节码
      */
-    public void startActivity(Class<?> cls){
+   /* public void startActivity(Class<?> cls){
         Intent intent = new Intent(HomeActivity.this,cls);
         startActivity(intent);
     }
