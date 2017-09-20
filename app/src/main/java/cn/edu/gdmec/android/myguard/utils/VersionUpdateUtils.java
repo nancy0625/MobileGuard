@@ -28,6 +28,7 @@ import java.io.File;
 import java.io.IOException;
 import java.net.ProtocolException;
 
+import cn.edu.gdmec.android.myguard.HomeActivity;
 import cn.edu.gdmec.android.myguard.R;
 
 public class VersionUpdateUtils {
@@ -35,32 +36,32 @@ public class VersionUpdateUtils {
     private static final int MESSAGE_IO_ERROR = 102;
     private static final int MESSAGE_JSON_ERROR= 103;
     private static final int MESSAGE_SHOW_ERROR= 104;
-   protected static final int MESSAGE_ENTERHOME= 105;
+    private static final int MESSAGE_ENTERHOME= 105;
     /**用于更新UI */
     private Handler handler = new Handler(){
-        Context context ;
+
         public void handleMessage(android.os.Message msg){
             switch (msg.what){
                 case MESSAGE_IO_ERROR:
                     Toast.makeText(context , "IO异常", Toast.LENGTH_SHORT).show();
-                        enterHome();
+
                     break;
                 case MESSAGE_JSON_ERROR:
                     Toast.makeText(context , "JSON解析异常", Toast.LENGTH_SHORT).show();
-                        enterHome();
+
                     break;
                 case MESSAGE_NET_ERROR:
                     Toast.makeText(context,"网络异常",Toast.LENGTH_SHORT).show();
-                        enterHome();
+
                     break;
                 case MESSAGE_SHOW_ERROR:
                   showUpdateDialog(versionEntity);
                     break;
 
                 case MESSAGE_ENTERHOME:
-                    Intent intent = new Intent(context,Activity.class);
+                    Intent intent = new Intent(context,HomeActivity.class);
                     context.startActivity(intent);
-                    context.fileList();
+                    context.finish();
                     break;
 
             }
@@ -71,9 +72,9 @@ public class VersionUpdateUtils {
     private Activity context;
     private ProgressDialog mProgressDialog;
     private VersionEntity versionEntity;
-    public VersionUpdateUtils(String Version,Activity activity){
-        mVersion = Version;
-        context = activity;
+    public VersionUpdateUtils(String Version,Activity context){
+        this.mVersion = Version;
+        this.context = context;
     }
     /**
      * 获取服务器版本号
@@ -95,12 +96,9 @@ public class VersionUpdateUtils {
                 //创建jsonObject对象
                 JSONObject jsonObject = new JSONObject(result);
                 versionEntity = new VersionEntity();
-                String code = jsonObject.getString("code");
-                versionEntity.versioncode = code;
-                String des = jsonObject.getString("des");
-                versionEntity.description = des;
-                String apkurl = jsonObject.getString("apkurl");
-                versionEntity.apkurl = apkurl;
+                versionEntity.versioncode =jsonObject.getString("code");
+                versionEntity.description =jsonObject.getString("des");
+                versionEntity.apkurl = jsonObject.getString("apkurl");
                 if(!mVersion.equals(versionEntity.versioncode)){
                     //版本号不一样
                     System.out.println(versionEntity.description);
@@ -135,16 +133,16 @@ public class VersionUpdateUtils {
         //设置立即升级按钮点击事件
         builder.setPositiveButton("立即升级", new DialogInterface.OnClickListener() {
             @Override
-            public void onClick(DialogInterface dialog, int which) {
+            public void onClick(DialogInterface dialog, int i) {
                 initProgressDialog();
-                //downloadNewApk(versionEntity.apkurl);
+                downloadNewApk(versionEntity.apkurl);
             }
         });
     //设置不升级按钮点击升级事件
         builder.setNegativeButton("暂不升级", new DialogInterface.OnClickListener() {
             @Override
-            public void onClick(DialogInterface dialog, int which) {
-                dialog.dismiss();
+            public void onClick(DialogInterface dialogInterface, int which) {
+                dialogInterface.dismiss();
                 enterHome();
             }
         });
@@ -162,32 +160,10 @@ public class VersionUpdateUtils {
     /**
      * 下载新版本
      */
-   /* protected  void downloadNewApk(String apkurl){
+    protected  void downloadNewApk(String apkurl){
         DownLoadUtils downLoadUtils = new DownLoadUtils();
-        downLoadUtils.downloadApk(apkurl,"mnt/sdcard/mobilesafe2.0apk",new DownLoadUtils){
-            @Override
-            public void onSuccess(ResponseInfo<File> arg0) {
-                mProgressDialog.dismiss();
-                MyUtils.installApk(context);
-            }
-
-            @Override
-            public void onFailure(HttpException arg0, String arg1) {
-                //TODO Auto-generated method stub
-                mProgressDialog.setMessage("下载失败");
-                mProgressDialog.dismiss();
-                enterHome();
-
-            }
-
-            @Override
-            public void onLoadding(long total,long current,boolean isUpLoading){
-                mProgressDialog.setMax((int)total);
-                mProgressDialog.setMessage("正在下载...");
-                mProgressDialog.setProgress((int) current);
-            }
-        });
-    }*/
+        downLoadUtils.downloadApk(apkurl,"mobileguardapk",context);
+    }
     private void enterHome(){
         handler.sendEmptyMessageDelayed(MESSAGE_ENTERHOME,2000);
     }

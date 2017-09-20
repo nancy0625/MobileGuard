@@ -31,7 +31,7 @@ public class SplashActivity extends Activity {
                 //获取服务器版本号
                 updateUtils.getCloudVersion();
             }
-        };
+        }.start();
     }
     /** 初始化控件*/
     private void initView(){
