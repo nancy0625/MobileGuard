@@ -1,15 +1,10 @@
-package cn.edu.gdmec.android.myguard.utils;
+package cn.edu.gdmec.android.myguard.m1home.utils;
 
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
-import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.net.http.HttpResponseCache;
-import java.net.*;
-import com.lidroid.xutils.exception.HttpException;
-import com.lidroid.xutils.http.ResponseInfo;
 
 import android.os.Handler;
 import android.widget.Toast;
@@ -24,12 +19,12 @@ import org.apache.http.util.EntityUtils;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.io.File;
 import java.io.IOException;
 import java.net.ProtocolException;
 
-import cn.edu.gdmec.android.myguard.HomeActivity;
+import cn.edu.gdmec.android.myguard.m1home.HomeActivity;
 import cn.edu.gdmec.android.myguard.R;
+import cn.edu.gdmec.android.myguard.m1home.entity.VersionEntity;
 
 public class VersionUpdateUtils {
     private static final int MESSAGE_NET_ERROR = 101;

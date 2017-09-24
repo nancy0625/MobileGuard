@@ -1,7 +1,6 @@
-package cn.edu.gdmec.android.myguard;
+package cn.edu.gdmec.android.myguard.m1home;
 
 import android.app.Activity;
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.KeyEvent;
 import android.view.View;
@@ -9,6 +8,9 @@ import android.view.Window;
 import android.widget.AdapterView;
 import android.widget.GridView;
 import android.widget.Toast;
+
+import cn.edu.gdmec.android.myguard.R;
+import cn.edu.gdmec.android.myguard.m1home.adapter.HomeAdapter;
 
 /**
  * Created by asus on 2017/9/11.
@@ -76,7 +78,7 @@ public class HomeActivity extends Activity {
 
     /**
      * 开启新的Activity不关闭自己
-     * @param cls,新的Activity的字节码
+     * @param //cls,新的Activity的字节码
      */
    /* public void startActivity(Class<?> cls){
         Intent intent = new Intent(HomeActivity.this,cls);

@@ -1,4 +1,4 @@
-package cn.edu.gdmec.android.myguard.utils;
+package cn.edu.gdmec.android.myguard.m1home.utils;
 
 import android.app.Activity;
 import android.content.Context;

@@ -1,4 +1,4 @@
-package cn.edu.gdmec.android.myguard.utils;
+package cn.edu.gdmec.android.myguard.m1home.entity;
 
 /**
  * Created by asus on 2017/9/10.

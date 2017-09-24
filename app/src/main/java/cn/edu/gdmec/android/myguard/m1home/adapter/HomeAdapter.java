@@ -1,4 +1,4 @@
-package cn.edu.gdmec.android.myguard;
+package cn.edu.gdmec.android.myguard.m1home.adapter;
 
 import android.content.Context;
 import android.view.View;
@@ -6,6 +6,8 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import cn.edu.gdmec.android.myguard.R;
 
 /**
  * Created by asus on 2017/9/10.

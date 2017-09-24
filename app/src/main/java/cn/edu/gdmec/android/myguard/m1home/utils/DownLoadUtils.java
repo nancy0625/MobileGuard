@@ -1,4 +1,4 @@
-package cn.edu.gdmec.android.myguard.utils;
+package cn.edu.gdmec.android.myguard.m1home.utils;
 
 import android.app.DownloadManager;
 
@@ -7,29 +7,6 @@ import android.content.Context;
 import android.net.Uri;
 
 import android.webkit.MimeTypeMap;
-
-
-
-import com.lidroid.xutils.HttpUtils;
-
-import com.lidroid.xutils.exception.HttpException;
-
-import com.lidroid.xutils.http.ResponseInfo;
-
-import com.lidroid.xutils.http.callback.RequestCallBack;
-
-
-
-import java.io.File;
-
-import java.net.HttpRetryException;
-
-
-
-
-
-import javax.security.auth.callback.Callback;
-
 
 
 /**
