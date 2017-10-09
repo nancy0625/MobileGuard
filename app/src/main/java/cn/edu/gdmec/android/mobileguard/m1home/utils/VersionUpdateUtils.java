@@ -1,4 +1,4 @@
-package cn.edu.gdmec.android.myguard.m1home.utils;
+package cn.edu.gdmec.android.mobileguard.m1home.utils;
 
 import android.app.Activity;
 import android.app.AlertDialog;
@@ -22,9 +22,9 @@ import org.json.JSONObject;
 import java.io.IOException;
 import java.net.ProtocolException;
 
-import cn.edu.gdmec.android.myguard.m1home.HomeActivity;
-import cn.edu.gdmec.android.myguard.R;
-import cn.edu.gdmec.android.myguard.m1home.entity.VersionEntity;
+import cn.edu.gdmec.android.mobileguard.m1home.HomeActivity;
+import cn.edu.gdmec.android.mobileguard.m1home.entity.VersionEntity;
+import cn.edu.gdmec.android.mobileguard.R;
 
 public class VersionUpdateUtils {
     private static final int MESSAGE_NET_ERROR = 101;

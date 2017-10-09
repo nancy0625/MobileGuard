@@ -1,4 +1,4 @@
-package cn.edu.gdmec.android.myguard.m2home.utils;
+package cn.edu.gdmec.android.mobileguard.m2home.utils;
 
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;

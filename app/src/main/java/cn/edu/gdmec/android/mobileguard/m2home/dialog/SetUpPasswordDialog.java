@@ -1,4 +1,4 @@
-package cn.edu.gdmec.android.myguard.m2home.dialog;
+package cn.edu.gdmec.android.mobileguard.m2home.dialog;
 
 import android.app.Dialog;
 import android.content.Context;
@@ -8,7 +8,7 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
 
-import cn.edu.gdmec.android.myguard.R;
+import cn.edu.gdmec.android.mobileguard.R;
 
 /**
  * Created by asus on 2017/9/24.

@@ -1,4 +1,4 @@
-package cn.edu.gdmec.android.myguard.m1home;
+package cn.edu.gdmec.android.mobileguard.m1home;
 
 import android.app.Activity;
 import android.os.Bundle;
@@ -9,8 +9,8 @@ import android.widget.AdapterView;
 import android.widget.GridView;
 import android.widget.Toast;
 
-import cn.edu.gdmec.android.myguard.R;
-import cn.edu.gdmec.android.myguard.m1home.adapter.HomeAdapter;
+import cn.edu.gdmec.android.mobileguard.R;
+import cn.edu.gdmec.android.mobileguard.m1home.adapter.HomeAdapter;
 
 /**
  * Created by asus on 2017/9/11.

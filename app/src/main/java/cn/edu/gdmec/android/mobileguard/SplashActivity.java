@@ -1,12 +1,12 @@
-package cn.edu.gdmec.android.myguard;
+package cn.edu.gdmec.android.mobileguard;
 
 import android.app.Activity;
 import android.os.Bundle;
 import android.view.Window;
 import android.widget.TextView;
 
-import cn.edu.gdmec.android.myguard.m1home.utils.MyUtils;
-import cn.edu.gdmec.android.myguard.m1home.utils.VersionUpdateUtils;
+import cn.edu.gdmec.android.mobileguard.m1home.utils.MyUtils;
+import cn.edu.gdmec.android.mobileguard.m1home.utils.VersionUpdateUtils;
 
 public class SplashActivity extends Activity {
     /**
@@ -21,7 +21,7 @@ public class SplashActivity extends Activity {
         super.onCreate(savedInstanceState);
         //设置该Activity没有标题栏，在加载布局之前调用
         requestWindowFeature(Window.FEATURE_NO_TITLE);
-        setContentView(R.layout.activity_splash);
+        setContentView(cn.edu.gdmec.android.mobileguard.R.layout.activity_splash);
         mVersion = MyUtils.getVersion(getApplicationContext());
         initView();
         final VersionUpdateUtils updateUtils = new VersionUpdateUtils(mVersion,SplashActivity.this);
@@ -34,7 +34,7 @@ public class SplashActivity extends Activity {
     }
     /** 初始化控件*/
     private void initView(){
-        mVersionTV = (TextView)findViewById(R.id.tv_splash_version);
+        mVersionTV = (TextView)findViewById(cn.edu.gdmec.android.mobileguard.R.id.tv_splash_version);
         mVersionTV.setText("版本号："+mVersion);
     }
 }
