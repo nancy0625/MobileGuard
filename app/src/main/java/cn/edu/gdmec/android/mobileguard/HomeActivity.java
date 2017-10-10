@@ -1,4 +1,4 @@
-package cn.edu.gdmec.android.mobileguard.m1home;
+package cn.edu.gdmec.android.mobileguard;
 
 import android.app.Activity;
 import android.os.Bundle;
@@ -9,7 +9,6 @@ import android.widget.AdapterView;
 import android.widget.GridView;
 import android.widget.Toast;
 
-import cn.edu.gdmec.android.mobileguard.R;
 import cn.edu.gdmec.android.mobileguard.m1home.adapter.HomeAdapter;
 
 /**

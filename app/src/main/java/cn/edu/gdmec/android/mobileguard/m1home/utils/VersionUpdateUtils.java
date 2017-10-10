@@ -22,7 +22,7 @@ import org.json.JSONObject;
 import java.io.IOException;
 import java.net.ProtocolException;
 
-import cn.edu.gdmec.android.mobileguard.m1home.HomeActivity;
+import cn.edu.gdmec.android.mobileguard.HomeActivity;
 import cn.edu.gdmec.android.mobileguard.m1home.entity.VersionEntity;
 import cn.edu.gdmec.android.mobileguard.R;
 
