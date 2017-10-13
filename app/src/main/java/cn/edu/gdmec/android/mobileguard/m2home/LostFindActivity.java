@@ -5,9 +5,6 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
-import android.view.Window;
-import android.widget.CompoundButton;
-import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.ToggleButton;
@@ -27,7 +24,7 @@ public class LostFindActivity extends Activity implements View.OnClickListener {
     protected void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
         //requestWindowFeature(Window.FEATURE_NO_TITLE);
-        setContentView(R.layout.activity_lostfind);
+        setContentView(R.layout.activity_lost_find);
        // msharePreferences = getSharedPreferences("config",MODE_PRIVATE);
         startSetUp1Activity();
       /*  if (!isSetUp()){
