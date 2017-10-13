@@ -5,6 +5,8 @@
     android:toYDelta="0"
     android:toXDelta="100%p"
     android:fromYDelta="0"
+    android:duration = "500"
+    android:repeatCount="0"
     >
 
 </translate>

@@ -31,11 +31,14 @@ public class SetUpPasswordDialog extends Dialog implements android.view.View.OnC
     public  SetUpPasswordDialog(Context context){
         super(context, R.style.dialog_custom);
     }
+    public void setCallBack(MyCallBack myCallBack){
+        this.myCallBack = myCallBack;
+    }
     @Override
     protected  void onCreate(Bundle savedInstanceState){
         setContentView(R.layout.setup_password_dialog);
         super.onCreate(savedInstanceState);
-
+        initView();
     }
     //初始化控件
     private void initView(){

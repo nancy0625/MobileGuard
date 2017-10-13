@@ -4,6 +4,8 @@
     android:toYDelta="0"
     android:toXDelta="-100%p"
     android:fromXDelta="0"
+    android:duration = "500"
+    android:repeatCount="0"
 
     >
 

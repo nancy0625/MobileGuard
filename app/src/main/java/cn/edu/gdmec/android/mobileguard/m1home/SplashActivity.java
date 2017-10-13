@@ -2,6 +2,7 @@ package cn.edu.gdmec.android.mobileguard.m1home;
 
 import android.app.Activity;
 import android.os.Bundle;
+
 import android.view.Window;
 import android.widget.TextView;
 

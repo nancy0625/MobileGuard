@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
     <include layout="@layout/titlebar"/>
+
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="50dp">
@@ -189,6 +190,9 @@
                 android:text="远程删除数据"
                 android:textColor="@color/purple"
                 />
+
         </RelativeLayout>
     </LinearLayout>
+
+
 </LinearLayout>
