@@ -20,7 +20,7 @@
                 android:layout_width="80dp"
                 android:layout_height="80dp"
                 android:layout_centerInParent="true"
-                android:background="@drawable/setup_setting_complete"
+                android:background="@drawable/add"
                 />
             <TextView
                 android:layout_width="match_parent"
@@ -28,7 +28,7 @@
                 android:layout_below="@+id/imgv"
                 android:layout_marginTop="20dp"
                 android:gravity="center"
-                android:text="恭喜！设置完成"
+                android:text="恭喜 ！设置完成"
                 android:textColor="@android:color/white"
                 android:textScaleX="1.1"
                 android:textSize="18sp"

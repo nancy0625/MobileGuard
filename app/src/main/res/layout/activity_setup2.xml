@@ -20,7 +20,7 @@
                 android:layout_width="80dp"
                 android:layout_height="80dp"
                 android:layout_centerInParent="true"
-                android:background="@drawable/sim_setup"
+                android:background="@drawable/add"
                 />
             <TextView
                 android:layout_width="match_parent"
@@ -45,7 +45,7 @@
             <ImageView
                 android:layout_width="60dp"
                 android:layout_height="60dp"
-                android:layout_gravity="center_vertical"
+                android:layout_gravity="center_vertical|left"
                 android:layout_marginLeft="15dp"
                 android:background="@drawable/recomand_icon"
                 />

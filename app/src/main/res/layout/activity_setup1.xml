@@ -17,7 +17,7 @@
                 android:layout_width="80dp"
                 android:layout_height="80dp"
                 android:layout_centerInParent="true"
-                android:background="@drawable/security_phone"
+                android:background="@drawable/add"
                 />
             <TextView
                 android:layout_width="match_parent"
@@ -27,7 +27,7 @@
                 android:gravity="center"
                 android:text="手机防盗向导"
                 android:textColor="@android:color/white"
-                android:textSize="18dp"
+                android:textSize="18sp"
                 />
 
         </RelativeLayout>
