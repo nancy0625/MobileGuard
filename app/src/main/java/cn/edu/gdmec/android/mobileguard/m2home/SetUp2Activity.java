@@ -28,7 +28,7 @@ public class SetUp2Activity extends BaseSetUpActivity implements View.OnClickLis
         initView();
     }
     private void initView(){
-        //设置第二个小圆点的颜色
+        //设置第二个小圆点的颜色l
         ((RadioButton)findViewById(R.id.rb_second)).setChecked(true);
        /* mBindSIMBtn = (Button)findViewById(R.id.btn_bind_sim);
         mBindSIMBtn.setOnClickListener(this);
