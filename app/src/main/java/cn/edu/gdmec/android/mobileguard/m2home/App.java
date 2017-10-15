@@ -9,7 +9,7 @@ import android.telephony.TelephonyManager;
 import android.text.TextUtils;
 import android.util.Log;
 
-/**
+/**，
  * Created by acer on 2017/10/14.
  */
 
