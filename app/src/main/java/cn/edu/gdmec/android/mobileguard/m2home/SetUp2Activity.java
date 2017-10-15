@@ -47,10 +47,10 @@ public class SetUp2Activity extends BaseSetUpActivity implements View.OnClickLis
     }
     @Override
     public void showNext() {
-        /*if (!isBind()){
+       if (!isBind()){
             Toast.makeText(this,"您还没有绑定SIM卡",Toast.LENGTH_SHORT).show();
             return;
-        }*/
+        }
         startActivityAndFinishSelf(SetUp3Activity.class);
     }
 
