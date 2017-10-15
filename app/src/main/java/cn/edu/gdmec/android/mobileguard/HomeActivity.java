@@ -27,7 +27,7 @@ import cn.edu.gdmec.android.mobileguard.m2home.utils.MD5Utils;
 
 public class HomeActivity extends Activity {
     private long mExitTime;
-    //声明GridView该控件类似于ListView 列表解释
+    //声明GridView该控件类似于ListView 列表
     private GridView gv_home;
 
     /** 存储手机防盗密码的sp     */
