@@ -36,7 +36,7 @@ public class SetUp2Activity extends BaseSetUpActivity implements View.OnClickLis
             mBindSIMBtn.setEnabled(false);
         }else {
             mBindSIMBtn.setEnabled(true);
-        }*/
+        } */
     }
     private boolean isBind(){
         String sinString = sp.getString("sim",null);
