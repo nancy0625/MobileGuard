@@ -32,7 +32,7 @@ public class ContactInfoParser {
                 //根据联系人的id，查询data表，把祖国id的数据取出来
                 //系统api 查询data表的时候  不是真正查询data表  而是查询data表的视图
                 Cursor dataCursor = resolver.query(datauri, new String[]{
-                        "data1"}, "raw_contact_id=?", new String[]{id}, null);
+                        "data1","mimetype"}, "raw_contact_id=?", new String[]{id}, null);
                 while (dataCursor.moveToNext()) {
                     String data1 = dataCursor.getString(0);
                     String mimetype = dataCursor.getString(1);
