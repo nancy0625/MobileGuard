@@ -79,11 +79,11 @@ public class SetUp2Activity extends BaseSetUpActivity implements View.OnClickLis
            SharedPreferences.Editor edit = sp.edit();
             edit.putString("sim",simSerialNumber);
             edit.commit();
-            Toast.makeText(this,"SIM卡绑定成功",Toast.LENGTH_SHORT).show();
+            Toast.makeText(this,"SIM卡绑定成功",Toast.LENGTH_LONG).show();
             mBindSIMBtn.setEnabled(false);
         }else{
             //已经绑定的用户
-            Toast.makeText(this,"SIM卡已经绑定",Toast.LENGTH_SHORT).show();
+            Toast.makeText(this,"SIM卡已经绑定",Toast.LENGTH_LONG).show();
             mBindSIMBtn.setEnabled(false);
         }
     }

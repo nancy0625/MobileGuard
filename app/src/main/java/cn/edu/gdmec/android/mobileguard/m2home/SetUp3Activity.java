@@ -46,7 +46,7 @@ public class SetUp3Activity extends BaseSetUpActivity implements View.OnClickLis
        //判断文本框中是否有电话号码
         String safephone = mInputPhone.getText().toString().trim();
         if (TextUtils.isEmpty(safephone)){
-            Toast.makeText(this,"请输入安全号码",Toast.LENGTH_SHORT).show();
+            Toast.makeText(this,"请输入安全号码",Toast.LENGTH_LONG).show();
             return;
         }
 
