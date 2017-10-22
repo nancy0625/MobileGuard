@@ -16,7 +16,6 @@ import android.widget.Toast;
 
 import cn.edu.gdmec.android.mobileguard.m1home.adapter.HomeAdapter;
 import cn.edu.gdmec.android.mobileguard.m2home.LostFindActivity;
-import cn.edu.gdmec.android.mobileguard.m2home.SetUp1Activity;
 import cn.edu.gdmec.android.mobileguard.m2home.dialog.InterPasswordDialog;
 import cn.edu.gdmec.android.mobileguard.m2home.dialog.SetUpPasswordDialog;
 import cn.edu.gdmec.android.mobileguard.m2home.utils.MD5Utils;
@@ -142,7 +141,7 @@ public class HomeActivity extends Activity {
                     //进入防盗页面
                     mInPswdDialog.dismiss();
                     startActivity(LostFindActivity.class);
-                    //Toast.makeText(HomeActivity.this,"可以进入手机防盗模块",Toast.LENGTH_LONG).show();
+                    Toast.makeText(HomeActivity.this,"可以进入手机防盗模块",Toast.LENGTH_LONG).show();
 
                 }else {
                     //对话框消失
@@ -194,17 +193,11 @@ public class HomeActivity extends Activity {
         }
         return true;
     }
-    public void startActivity(Class<?> cls){
-        Intent intent = new Intent(HomeActivity.this,cls);
-        startActivity(intent);
-
-    }
-
     /**
      * 开启新的Activity不关闭自己
      * @param //cls,新的Activity的字节码
      */
-   /* public void startActivity(Class<?> cls){
+   public void startActivity(Class<?> cls){
         Intent intent = new Intent(HomeActivity.this,cls);
         startActivity(intent);
     }
@@ -226,4 +219,4 @@ public class HomeActivity extends Activity {
     }
 
 
-}
+   }

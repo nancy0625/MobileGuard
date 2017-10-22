@@ -22,7 +22,7 @@ public class SplashActivity extends Activity {
         super.onCreate(savedInstanceState);
         //设置该Activity没有标题栏，在加载布局之前调用
         requestWindowFeature(Window.FEATURE_NO_TITLE);
-        setContentView(cn.edu.gdmec.android.mobileguard.R.layout.activity_splash);
+       setContentView(cn.edu.gdmec.android.mobileguard.R.layout.activity_splash);
         mVersion = MyUtils.getVersion(getApplicationContext());
         initView();
         final VersionUpdateUtils updateUtils = new VersionUpdateUtils(mVersion,SplashActivity.this);

@@ -8,7 +8,6 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
-
 import cn.edu.gdmec.android.mobileguard.R;
 
 /**

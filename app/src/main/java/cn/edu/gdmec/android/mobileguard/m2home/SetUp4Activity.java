@@ -24,7 +24,7 @@ public class SetUp4Activity extends BaseSetUpActivity {
     }
     private void initView(){
         ((RadioButton)findViewById(R.id.rb_four)).setChecked(true);
-       /* mStatusTV = (TextView)findViewById(R.id.tv_setup4_status);
+        mStatusTV = (TextView)findViewById(R.id.tv_setup4_status);
         mToggleButton = (ToggleButton)findViewById(R.id.togglebtn_securityfunction);
         mToggleButton.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
@@ -46,16 +46,16 @@ public class SetUp4Activity extends BaseSetUpActivity {
         }else{
             mStatusTV.setText("防盗保护没有开启");
             mToggleButton.setChecked(false);
-        }*/
+        }
     }
 
 
     @Override
     public void showNext() {
-       /* //跳转到保护页面
+        //跳转到保护页面
         SharedPreferences.Editor editor = sp.edit();
         editor.putBoolean("isSetUp",true);
-        editor.commit();*/
+        editor.commit();
         startActivityAndFinishSelf(LostFindActivity.class);
     }
 

@@ -5,6 +5,9 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
+import android.view.Window;
+import android.widget.CompoundButton;
+import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.ToggleButton;
@@ -23,28 +26,30 @@ public class LostFindActivity extends Activity implements View.OnClickListener {
     private TextView mProtectStatusTV;
     protected void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
-        //requestWindowFeature(Window.FEATURE_NO_TITLE);
+        requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.activity_lost_find);
-       // msharePreferences = getSharedPreferences("config",MODE_PRIVATE);
+       msharePreferences = getSharedPreferences("config",MODE_PRIVATE);
         startSetUp1Activity();
-      /*  if (!isSetUp()){
+       if (!isSetUp()){
             //如果没有进入过设置向导，则进入
             startSetUp1Activity();
 
         }
-        initView();*/
+        initView();
     }
     private boolean isSetUp(){
         return msharePreferences.getBoolean("isSetUp",false);
     }
     //初始化控件
-    /**private void initView(){
+    private void initView(){
         TextView mTitleTV = (TextView)findViewById(R.id.tv_title);
         mTitleTV.setText("手机防盗");
         ImageView mLeftImgv = (ImageView)findViewById(R.id.imgv_leftbtn);
         mLeftImgv.setOnClickListener(this);
         mLeftImgv.setImageResource(R.drawable.back);
-       // findViewById(R.id.rl_inter_setup_wizard)
+        findViewById(R.id.rl_titlebar).setBackgroundColor(
+                getResources().getColor(R.color.purple)
+        );
         mSafePhoneTV = (TextView)findViewById(R.id.tv_safephone);
         mSafePhoneTV.setText(msharePreferences.getString("safephone",""));
         mToggleButton = (ToggleButton)findViewById(R.id.togglebtn_lostfind);
@@ -74,7 +79,7 @@ public class LostFindActivity extends Activity implements View.OnClickListener {
                 editor.commit();
             }
         });
-    }*/
+    }
     /**
      * Called when a view has been clicked.
      *

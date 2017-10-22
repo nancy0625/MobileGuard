@@ -8,9 +8,6 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.RadioButton;
 import android.widget.Toast;
-
-import com.lidroid.xutils.cache.LruDiskCache;
-
 import cn.edu.gdmec.android.mobileguard.R;
 
 /**
@@ -24,26 +21,26 @@ public class SetUp2Activity extends BaseSetUpActivity implements View.OnClickLis
     protected void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_setup2);
-       // mTelephonyManager = (TelephonyManager)getSystemService(TELECOM_SERVICE);
+        mTelephonyManager = (TelephonyManager)getSystemService(TELEPHONY_SERVICE);
         initView();
     }
     private void initView(){
-        //设置第二个小圆点的颜色l
+        //设置第二个小圆点的颜色
         ((RadioButton)findViewById(R.id.rb_second)).setChecked(true);
-       /* mBindSIMBtn = (Button)findViewById(R.id.btn_bind_sim);
+       mBindSIMBtn = (Button)findViewById(R.id.btn_bind_sim);
         mBindSIMBtn.setOnClickListener(this);
         if (isBind()){
             mBindSIMBtn.setEnabled(false);
         }else {
             mBindSIMBtn.setEnabled(true);
-        }  */
+        }
     }
     private boolean isBind(){
-        String sinString = sp.getString("sim",null);
-        if (TextUtils.isEmpty(sinString)){
+        String simString = sp.getString("sim",null);
+        if (TextUtils.isEmpty(simString)){
             return false;
         }
-        return false;
+        return true;
     }
     @Override
     public void showNext() {

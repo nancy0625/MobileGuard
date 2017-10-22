@@ -1,9 +1,8 @@
-package cn.edu.gdmec.android.mobileguard.m2home;
+package cn.edu.gdmec.android.mobileguard;
 
 import android.app.Application;
 import android.content.Context;
 import android.content.SharedPreferences;
-import android.telecom.TelecomManager;
 import android.telephony.SmsManager;
 import android.telephony.TelephonyManager;
 import android.text.TextUtils;
@@ -17,10 +16,10 @@ public class App extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
-        currectSIM();
+        correctSIM();
     }
 
-    public void currectSIM() {
+    public void correctSIM() {
         //检查SIM卡是否发生变化
         SharedPreferences sp = getSharedPreferences("config", Context.MODE_PRIVATE);
         //获取防盗保护状态
