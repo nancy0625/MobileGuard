@@ -37,7 +37,7 @@
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
-        <activity android:name=".m2home.ContactSelectActivity"/>
+
         <activity android:name=".m2home.LostFindActivity"/>
         <activity android:name=".m2home.SetUp1Activity"/>
         <activity android:name=".m2home.SetUp2Activity"/>
@@ -51,6 +51,7 @@
                 <action android:name="android.intent.action.BOOT_COMPLETED"/>
             </intent-filter>
         </receiver>
+        <activity android:name=".m2home.ContactSelectActivity"/>
         <!-- 配置设备超级管理员广播接收者，引用XML策略声明 device_admin_sample -->
         <!--<receiver android:name=".m2home.receiver.MyDeviceAdminReceiver"
             android:description="@string/sample_device_admin_description"
@@ -65,9 +66,10 @@
             <intent-filter>
                 <action android:name="android.app.action.DEVICE_ADMIN_ENABLED"/>
             </intent-filter>
-        <activity android:name=".m2home.ContactSelectActivity"></activity>
+
         <service android:name=".m2home.service.GPSLocationService"
             android:persistent="true"/>-->
+
     </application>
 
 </manifest>

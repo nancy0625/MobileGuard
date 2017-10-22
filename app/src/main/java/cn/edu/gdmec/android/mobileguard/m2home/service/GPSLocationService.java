@@ -19,8 +19,8 @@ import android.telephony.SmsManager;
  * Created by acer on 2017/10/20.
  */
 
-public class GPSLocationService extends Service {
-    private LocationManager lm;
+public class GPSLocationService {
+  /*  private LocationManager lm;
     private MyListener listener;
     @Nullable
     @Override
@@ -88,5 +88,5 @@ public class GPSLocationService extends Service {
         super.onDestroy();
         lm.removeUpdates(listener);
         listener = null;
-    }
+    }*/
 }

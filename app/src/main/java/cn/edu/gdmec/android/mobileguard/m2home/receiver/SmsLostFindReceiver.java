@@ -16,8 +16,8 @@ import cn.edu.gdmec.android.mobileguard.m2home.service.GPSLocationService;
  * Created by acer on 2017/10/20.
  */
 
-public class SmsLostFindReceiver extends BroadcastReceiver {
-    private static final String TAG = SmsLostFindReceiver.class.getSimpleName();
+public class SmsLostFindReceiver  {
+   /* private static final String TAG = SmsLostFindReceiver.class.getSimpleName();
     private SharedPreferences sharedPreferences;
     private ComponentName componentName;
     @Override
@@ -67,5 +67,5 @@ public class SmsLostFindReceiver extends BroadcastReceiver {
             }
 
         }
-    }
+    }*/
 }
