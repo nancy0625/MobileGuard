@@ -29,7 +29,6 @@ public class LostFindActivity extends Activity implements View.OnClickListener {
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.activity_lost_find);
        msharePreferences = getSharedPreferences("config",MODE_PRIVATE);
-        startSetUp1Activity();
        if (!isSetUp()){
             //如果没有进入过设置向导，则进入
             startSetUp1Activity();
@@ -80,6 +79,11 @@ public class LostFindActivity extends Activity implements View.OnClickListener {
             }
         });
     }
+    private void startSetUp1Activity(){
+        Intent intent = new Intent(LostFindActivity.this,SetUp1Activity.class);
+        startActivity(intent);
+        finish();
+    }
     /**
      * Called when a view has been clicked.
      *
@@ -98,9 +102,5 @@ public class LostFindActivity extends Activity implements View.OnClickListener {
                 break;
         }
     }
-    private void startSetUp1Activity(){
-        Intent intent = new Intent(LostFindActivity.this,SetUp1Activity.class);
-        startActivity(intent);
-        finish();
-    }
+
 }

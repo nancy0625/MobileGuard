@@ -6,6 +6,7 @@ import android.content.ComponentName;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.provider.Settings;
 import android.text.TextUtils;
 import android.view.KeyEvent;
 import android.view.View;
@@ -18,6 +19,7 @@ import cn.edu.gdmec.android.mobileguard.m1home.adapter.HomeAdapter;
 import cn.edu.gdmec.android.mobileguard.m2home.LostFindActivity;
 import cn.edu.gdmec.android.mobileguard.m2home.dialog.InterPasswordDialog;
 import cn.edu.gdmec.android.mobileguard.m2home.dialog.SetUpPasswordDialog;
+import cn.edu.gdmec.android.mobileguard.m2home.receiver.MyDeviceAdminReceiver;
 import cn.edu.gdmec.android.mobileguard.m2home.utils.MD5Utils;
 
 /**
@@ -25,19 +27,37 @@ import cn.edu.gdmec.android.mobileguard.m2home.utils.MD5Utils;
  */
 
 public class HomeActivity extends Activity {
+
+    /** 设备管理 员 */
+    private DevicePolicyManager policyManager;
+    /** 申请权限 */
+    private ComponentName componentName;
     private long mExitTime;
     //声明GridView该控件类似于ListView
     private GridView gv_home;
 //测试
     /** 存储手机防盗密码的sp     */
      private SharedPreferences msharedPtrferences;
-    /** 设备管理员*/
-    private DevicePolicyManager policyManager;
-    /** 申请权限*/
-    private ComponentName componentName;
+
 
     protected void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
+        // 1.获取设备管理员
+        policyManager=(DevicePolicyManager) getSystemService(DEVICE_POLICY_SERVICE);
+        //本行代码需要 "手机防盗模块"完成后才能启用
+        // 2.申请权限, MyDeviceAdminReciever继承自DeviceAdminReceiver
+        componentName=new ComponentName(this,MyDeviceAdminReceiver.class);
+        // 3.判断,如果没有权限则申请权限
+        boolean active=policyManager.isAdminActive(componentName);
+        if(!active) {
+            //没有管理员的权限，则获取管理员的权限
+            System.out.println("没有管理员的权限，则获取管理员的权限");
+            Intent intent = new Intent(DevicePolicyManager.ACTION_ADD_DEVICE_ADMIN);
+            intent.putExtra(DevicePolicyManager.EXTRA_DEVICE_ADMIN, componentName);
+            intent.putExtra(DevicePolicyManager.EXTRA_ADD_EXPLANATION, "获取超级管理员权限，用于远程锁屏和清除数据");
+            startActivity(intent);
+
+        }
         //初始化布局
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.activity_home);
@@ -46,6 +66,7 @@ public class HomeActivity extends Activity {
         //初始化GridView
         gv_home = (GridView) findViewById(R.id.gv_home);
         gv_home.setAdapter(new HomeAdapter(HomeActivity.this));
+
 
         //设置条目的点击事件
      gv_home.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -64,35 +85,12 @@ public class HomeActivity extends Activity {
                          showSetUpPswdDialog();
                      }
                      break;
-                /* case 1://通讯卫士
-                     startActivity(SecurityPhoneActivity.class);
-                     break;
-                 case 2://软件管家
-                     startActivity(AppManagerActivity.class);
-                     break;
-                 case 3://病毒查杀
-                     startActivity(VirusScanActivity.class);
-                     break;
-                 case 4://缓存清理
-                     startActivity(CacheClearListActivity.class);
-                     break;
-                 case 5://进程管理
-                     startActivity(ProcessManagerActivity.class);
-                     break;
-                 case 6://流量统计
-                     startActivity(TrafficMonitoringActivity.class);
-                     break;
-                 case 7://高级工具
-                     startActivity(AdvancedToolsActivity.class);
-                     break;
-                 case 8://设置中心
-                     startActivity(SettingsActivity.class);
-                     break;*/
-
 
              }
          }
      });
+
+
 
 
     }
