@@ -23,7 +23,7 @@ import cn.edu.gdmec.android.mobileguard.m2home.service.GPSLocationService;
 public class SmsLostFindReceiver extends BroadcastReceiver {
     private  static final String TAG = SmsLostFindReceiver.class.getSimpleName();
     private SharedPreferences sharedPreferences;
-    private  ComponentName componentName;
+
     @Override
     public void onReceive(Context context, Intent intent) {
         sharedPreferences = context.getSharedPreferences("config",Activity.MODE_PRIVATE);
@@ -65,6 +65,7 @@ public class SmsLostFindReceiver extends BroadcastReceiver {
                     }else if ("#*lockScreen*#".equals(body)){
                         Log.i(TAG,"远程锁屏");
                         dpm.resetPassword("123456",0);
+                        dpm.lockNow();
                         abortBroadcast();
                     }
                 }

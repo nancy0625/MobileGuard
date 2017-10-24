@@ -3,7 +3,7 @@
     <!-- 声明安全策略，锁屏、清除数据、重置密码 -->
     <uses-policies>
 
-        <force-lock />
+        <force-lock/>
         <wipe-data />  <!-- 清除数据 -->
         <reset-password />   <!-- 重置密码 -->
     </uses-policies>
