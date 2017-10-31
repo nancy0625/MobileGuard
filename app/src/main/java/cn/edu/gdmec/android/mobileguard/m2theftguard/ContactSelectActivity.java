@@ -5,6 +5,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.view.Window;
 import android.widget.AdapterView;
@@ -23,7 +24,7 @@ import cn.edu.gdmec.android.mobileguard.m2theftguard.utils.ContactInfoParser;
  * Created by acer on 2017/10/19.
  */
 
-public class ContactSelectActivity extends Activity implements View.OnClickListener {
+public class ContactSelectActivity extends AppCompatActivity implements View.OnClickListener {
     private ListView mListView;
     private ContactAdapter adapter;
     private List<ContactInfo> systemContacts;
@@ -43,7 +44,7 @@ public class ContactSelectActivity extends Activity implements View.OnClickListe
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        requestWindowFeature(Window.FEATURE_NO_TITLE);
+        getSupportActionBar().hide();
         setContentView(R.layout.activity_contact_select);
         initView();
     }

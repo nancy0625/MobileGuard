@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.view.Window;
 import android.widget.CompoundButton;
@@ -18,7 +19,7 @@ import cn.edu.gdmec.android.mobileguard.R;
  * Created by asus on 2017/10/14.
  */
 
-public class LostFindActivity extends Activity implements View.OnClickListener {
+public class LostFindActivity extends AppCompatActivity implements View.OnClickListener {
     private TextView mSafePhoneTV;
     private RelativeLayout mInterSetupRL;
     private SharedPreferences msharePreferences;
@@ -26,7 +27,7 @@ public class LostFindActivity extends Activity implements View.OnClickListener {
     private TextView mProtectStatusTV;
     protected void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
-        requestWindowFeature(Window.FEATURE_NO_TITLE);
+        getSupportActionBar().hide();
         setContentView(R.layout.activity_lost_find);
        msharePreferences = getSharedPreferences("config",MODE_PRIVATE);
        if (!isSetUp()){

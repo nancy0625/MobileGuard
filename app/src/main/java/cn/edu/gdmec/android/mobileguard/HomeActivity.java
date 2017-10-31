@@ -6,6 +6,7 @@ import android.content.ComponentName;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
 import android.view.KeyEvent;
 import android.view.View;
@@ -26,7 +27,7 @@ import cn.edu.gdmec.android.mobileguard.m3communicationguard.SecurityPhoneActivi
  * Created by asus on 2017/9/11.
  */
 
-public class HomeActivity extends Activity {
+public class HomeActivity extends AppCompatActivity {
 
     /** 设备管理 员 */
     private DevicePolicyManager policyManager;
@@ -59,7 +60,7 @@ public class HomeActivity extends Activity {
 
         }
         //初始化布局
-        requestWindowFeature(Window.FEATURE_NO_TITLE);
+        getSupportActionBar().hide();
         setContentView(R.layout.activity_home);
         msharedPtrferences = getSharedPreferences("config",MODE_PRIVATE);
 

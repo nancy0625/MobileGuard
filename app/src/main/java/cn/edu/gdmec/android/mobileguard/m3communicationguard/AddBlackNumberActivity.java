@@ -18,7 +18,7 @@ import cn.edu.gdmec.android.mobileguard.m2theftguard.ContactSelectActivity;
 import cn.edu.gdmec.android.mobileguard.m3communicationguard.db.dao.BlackNumberDao;
 import cn.edu.gdmec.android.mobileguard.m3communicationguard.entity.BlackContactInfo;
 
-public class AddBlackNumberActivity extends Activity implements View.OnClickListener{
+public class AddBlackNumberActivity extends AppCompatActivity implements View.OnClickListener{
     private CheckBox mSmsCB;
     private CheckBox mTelCB;
     private EditText mNumET;
@@ -28,8 +28,7 @@ public class AddBlackNumberActivity extends Activity implements View.OnClickList
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        requestWindowFeature(Window.FEATURE_NO_TITLE);
-        System.out.print("0000");
+        getSupportActionBar().hide();
         setContentView(R.layout.activity_add_black_number);
         dao=new BlackNumberDao(this);
         intiView();
