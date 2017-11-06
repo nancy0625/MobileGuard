@@ -2,6 +2,7 @@ package cn.edu.gdmec.android.mobileguard.m4appmanager.adapter;
 
 import android.content.Context;
 
+import android.content.pm.PackageManager;
 import android.text.format.Formatter;
 import android.view.View;
 import android.view.ViewGroup;
@@ -120,6 +121,7 @@ public class AppManagerAdapter extends BaseAdapter {
             viewHolder.mAppIconImgv.setImageDrawable(appInfo.icon);
             viewHolder.mAppSizeTV.setText(Formatter.formatFileSize(context,appInfo.appSize));
             viewHolder.mAppNameTV.setText(appInfo.appName);
+
             if (appInfo.isSelected){
                 viewHolder.mAppOptionLL.setVisibility(View.VISIBLE);
             }else{
@@ -200,7 +202,11 @@ public class AppManagerAdapter extends BaseAdapter {
                     break;
                 case R.id.tv_about_app:
                     // 关于
-                    EngineUtils.About(context,appInfo);
+                    try {
+                        EngineUtils.About(context,appInfo);
+                    } catch (PackageManager.NameNotFoundException e) {
+                        e.printStackTrace();
+                    }
                     break;
             }
         }

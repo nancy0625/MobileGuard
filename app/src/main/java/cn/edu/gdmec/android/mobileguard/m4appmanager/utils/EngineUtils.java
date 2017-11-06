@@ -11,6 +11,9 @@ import android.net.Uri;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import java.util.Iterator;
+import java.util.List;
+
 import cn.edu.gdmec.android.mobileguard.m4appmanager.entity.AppInfo;
 
 /**
@@ -57,19 +60,32 @@ public class EngineUtils {
              Toast.makeText(context,"系统应用无法卸载 ",Toast.LENGTH_LONG).show();
          }
      }
-    /*开启应用的设置页面*/
-    public static void About(Context context,AppInfo appInfo){
-        /*EditText et_pkgname;
+    /*获取版本号*/
+    public static void About(Context context,AppInfo appInfo) throws PackageManager.NameNotFoundException {
+        Intent intent = new Intent();
+        intent.setType("text/plain");
+        PackageManager packageManager = context.getPackageManager();
+        PackageInfo packageInfo = packageManager.getPackageInfo(appInfo.packageName,0);
+        try {
 
-        String pkgname = et_pkgname.getText().toString();
 
-        Intent intent = new Intent(Intent.ACTION_MAIN,null);
-        PackageManager pm = context.getPackageManager();
-        PackageInfo  packageInfo = pm.getPackageInfo()
+            long firstInstallTime = packageInfo.firstInstallTime;
+            PackageInfo pi = packageManager.getPackageInfo(context.getPackageName(), PackageManager.GET_PERMISSIONS);
+            String[] perssion = pi.requestedPermissions;
+            String version = packageInfo.versionName;
+            PackageInfo packinfo = packageManager.getPackageInfo(context.getPackageName(), PackageManager.GET_SIGNATURES);
+            String singatures = packinfo.signatures[0].toCharsString();
+            intent.putExtra(Intent.EXTRA_TEXT,version+firstInstallTime+singatures+perssion);
+            System.out.print("版本号："+version+"时间"+firstInstallTime+singatures+perssion);
+            context.startActivity(intent);
+        }catch (PackageManager.NameNotFoundException e){
+            e.printStackTrace();
+        }
 
-        context.startActivity(intent);*/
 
 
 
     }
+
+
 }

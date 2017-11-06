@@ -9,6 +9,7 @@ import android.graphics.drawable.Drawable;
 public class AppInfo {
     /*应用程序包名*/
     public String packageName;
+
     /*应用程序图标*/
     public Drawable icon;
     /*应用程序名称*/
