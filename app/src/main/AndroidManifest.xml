@@ -24,6 +24,7 @@
     <uses-permission android:name="android.permission.CALL_PHONE"/>
     <uses-permission android:name="android.permission.READ_CALL_LOG"/>
     <uses-permission android:name="android.permission.WRITE_CALL_LOG"/>
+    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW"/>
 
     <application
         android:name=".App"
@@ -108,6 +109,7 @@
         </receiver>
 
         <!--拦截黑名单电话-->
+        <activity android:name=".m4appmanager.AppManagerActivity"/>
 
     </application>
 
