@@ -1,18 +1,22 @@
 package cn.edu.gdmec.android.mobileguard.m4appmanager.utils;
 
 
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 
 import android.net.Uri;
 
-import android.widget.EditText;
 import android.widget.Toast;
 
-import java.util.Iterator;
-import java.util.List;
+import java.io.ByteArrayInputStream;
+import java.security.cert.CertificateException;
+import java.security.cert.CertificateFactory;
+import java.security.cert.X509Certificate;
+import java.text.SimpleDateFormat;
 
 import cn.edu.gdmec.android.mobileguard.m4appmanager.entity.AppInfo;
 
@@ -26,7 +30,7 @@ public class EngineUtils {
         Intent intent = new Intent("android.intent.action.SEND");
         intent.addCategory("android.intent.category.DEFAULT");
         intent.setType("text/plain");
-        intent.putExtra(Intent.EXTRA_TEXT," 推荐您使用一款软件，名称交："+appInfo.appName+"下载路径：https://play.google.com/store/apps/details?id="+appInfo.packageName);
+        intent.putExtra(Intent.EXTRA_TEXT," 推荐您使用一款软件，名称叫："+appInfo.appName+"下载路径：https://play.google.com/store/apps/details?id="+appInfo.packageName);
         context.startActivity(intent);
 
     }
@@ -65,6 +69,8 @@ public class EngineUtils {
         Intent intent = new Intent();
         intent.setType("text/plain");
         PackageManager packageManager = context.getPackageManager();
+
+        AlertDialog.Builder builder = new AlertDialog.Builder(context);
         PackageInfo packageInfo = packageManager.getPackageInfo(appInfo.packageName,0);
         try {
 
@@ -75,15 +81,53 @@ public class EngineUtils {
             String version = packageInfo.versionName;
             PackageInfo packinfo = packageManager.getPackageInfo(context.getPackageName(), PackageManager.GET_SIGNATURES);
             String singatures = packinfo.signatures[0].toCharsString();
+
+            try
+            {
+                CertificateFactory
+                        certFactory =
+                        CertificateFactory.getInstance("X.509");
+
+                X509Certificate cert = (X509Certificate) certFactory.generateCertificate(new
+                        ByteArrayInputStream(singatures.getBytes()));
+
+                String pubKey =
+                        cert.getPublicKey().toString();   //公钥
+
+                String signNumber =
+                        cert.getSerialNumber().toString();
+
+                System.out.println("signName:" +
+                        cert.getSigAlgName());//算法名
+                System.out.println("pubKey:" +
+                        pubKey);
+
+                System.out.println("signNumber:" +
+                        signNumber);//证书序列编号
+
+                System.out.println("subjectDN:"+cert.getSubjectDN().toString());
+
+            } catch (CertificateException e)
+            {
+
+                e.printStackTrace();
+            }
             intent.putExtra(Intent.EXTRA_TEXT,version+firstInstallTime+singatures+perssion);
-            System.out.print("版本号："+version+"时间"+firstInstallTime+singatures+perssion);
-            context.startActivity(intent);
+            builder.setTitle("MobileGuard");
+
+            SimpleDateFormat format=new SimpleDateFormat("yyyy年MM月dd日 a hh:mm:ss");
+            builder.setMessage("Version："+version+"\n"+"install time:"+format.format(firstInstallTime)+"\n"+"Certificate issuer:"+singatures+"\n"+"Perssions:\n"+perssion);
+            builder.setPositiveButton("确定", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    dialog.dismiss();
+                }
+            });
+            builder.create().show();
+
         }catch (PackageManager.NameNotFoundException e){
             e.printStackTrace();
         }
-
-
-
 
     }
 
