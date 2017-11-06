@@ -38,13 +38,13 @@ public abstract class BaseSetUpActivity extends Activity {
                 if (e2.getRawX()-e1.getRawX()>200){
                     //从左向右滑动屏幕，显示上一个页面
                     showPre();
-                    overridePendingTransition(R.anim.pre_in,R.anim.next_out);
+                    overridePendingTransition(R.anim.zoom_in,R.anim.zoom_out);
                     return true;
                 }
                 if (e1.getRawX()-e2.getRawX()>200){
                     //从右向左滑动屏幕，显示下一个页面
                     showNext();
-                    overridePendingTransition(R.anim.next_in,R.anim.next_out);
+                    overridePendingTransition(R.anim.fade_in,R.anim.fade_out);
                     return true;
                 }
                 return super.onFling(e1,e2,velocityX,velocityY);
