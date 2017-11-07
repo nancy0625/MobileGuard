@@ -8,11 +8,19 @@ import android.content.Intent;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 
+import android.content.pm.Signature;
 import android.net.Uri;
 
 import android.widget.Toast;
 
+import java.io.BufferedInputStream;
 import java.io.ByteArrayInputStream;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.security.cert.Certificate;
 import java.security.cert.CertificateException;
 import java.security.cert.CertificateFactory;
 import java.security.cert.X509Certificate;
@@ -69,6 +77,7 @@ public class EngineUtils {
         Intent intent = new Intent();
         intent.setType("text/plain");
         PackageManager packageManager = context.getPackageManager();
+        StringBuilder builer = new StringBuilder();
 
         AlertDialog.Builder builder = new AlertDialog.Builder(context);
         PackageInfo packageInfo = packageManager.getPackageInfo(appInfo.packageName,0);
@@ -78,45 +87,41 @@ public class EngineUtils {
             long firstInstallTime = packageInfo.firstInstallTime;
             PackageInfo pi = packageManager.getPackageInfo(context.getPackageName(), PackageManager.GET_PERMISSIONS);
             String[] perssion = pi.requestedPermissions;
-            String version = packageInfo.versionName;
-            PackageInfo packinfo = packageManager.getPackageInfo(context.getPackageName(), PackageManager.GET_SIGNATURES);
-            String singatures = packinfo.signatures[0].toCharsString();
-
-            try
-            {
-                CertificateFactory
-                        certFactory =
-                        CertificateFactory.getInstance("X.509");
-
-                X509Certificate cert = (X509Certificate) certFactory.generateCertificate(new
-                        ByteArrayInputStream(singatures.getBytes()));
-
-                String pubKey =
-                        cert.getPublicKey().toString();   //公钥
-
-                String signNumber =
-                        cert.getSerialNumber().toString();
-
-                System.out.println("signName:" +
-                        cert.getSigAlgName());//算法名
-                System.out.println("pubKey:" +
-                        pubKey);
-
-                System.out.println("signNumber:" +
-                        signNumber);//证书序列编号
-
-                System.out.println("subjectDN:"+cert.getSubjectDN().toString());
-
-            } catch (CertificateException e)
-            {
-
-                e.printStackTrace();
+            for(int i=0;i<perssion.length;i++){
+                builer.append(perssion[i]).toString();
             }
+            String version = packageInfo.versionName;
+
+            /*发布者信息*/
+            PackageInfo packinfo = packageManager.getPackageInfo(appInfo.packageName, PackageManager.GET_SIGNATURES);
+
+
+           final Signature[] singatures = packinfo.signatures;
+            for(final Signature sig:singatures){
+                final  byte[] rawCert = sig.toByteArray();
+                InputStream certStream = new ByteArrayInputStream(rawCert);
+                CertificateFactory certificateFactory = CertificateFactory.getInstance("X509");
+                X509Certificate x509Certificate = (X509Certificate)certificateFactory.generateCertificate(certStream);
+                appInfo.signature = "Certificate issuer: "+x509Certificate.getIssuerDN()+"+\n";
+            }
+
+
+
+            /*File file = new File("");
+            InputStream inStream = new FileInputStream(file);
+            CertificateFactory cf = CertificateFactory.getInstance("X.509");
+            X509Certificate oCert = (X509Certificate)cf.generateCertificate(inStream);
+            inStream.close();
+            String innn = oCert.getIssuerDN().getName();
+            System.out.print(innn);*/
+
+
+            /* 应用权限*/
             intent.putExtra(Intent.EXTRA_TEXT,version+firstInstallTime+singatures+perssion);
             builder.setTitle("MobileGuard");
-
+            /*时间*/
             SimpleDateFormat format=new SimpleDateFormat("yyyy年MM月dd日 a hh:mm:ss");
-            builder.setMessage("Version："+version+"\n"+"install time:"+format.format(firstInstallTime)+"\n"+"Certificate issuer:"+singatures+"\n"+"Perssions:\n"+perssion);
+            builder.setMessage("Version："+version+"\n"+"install time:"+format.format(firstInstallTime)+"\n"+appInfo.signature+"\n"+"Perssions:\n"+builer);
             builder.setPositiveButton("确定", new DialogInterface.OnClickListener() {
                 @Override
                 public void onClick(DialogInterface dialog, int which) {
@@ -127,8 +132,9 @@ public class EngineUtils {
 
         }catch (PackageManager.NameNotFoundException e){
             e.printStackTrace();
+        } catch (CertificateException e) {
+            e.printStackTrace();
         }
-
     }
 
 

@@ -122,6 +122,7 @@ public class AppManagerAdapter extends BaseAdapter {
             viewHolder.mAppSizeTV.setText(Formatter.formatFileSize(context,appInfo.appSize));
             viewHolder.mAppNameTV.setText(appInfo.appName);
 
+
             if (appInfo.isSelected){
                 viewHolder.mAppOptionLL.setVisibility(View.VISIBLE);
             }else{

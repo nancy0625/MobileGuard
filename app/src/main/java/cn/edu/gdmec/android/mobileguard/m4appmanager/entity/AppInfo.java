@@ -1,5 +1,6 @@
 package cn.edu.gdmec.android.mobileguard.m4appmanager.entity;
 
+import android.content.pm.Signature;
 import android.graphics.drawable.Drawable;
 
 /**
@@ -9,7 +10,8 @@ import android.graphics.drawable.Drawable;
 public class AppInfo {
     /*应用程序包名*/
     public String packageName;
-
+    /*应用签署*/
+    public String signature;
     /*应用程序图标*/
     public Drawable icon;
     /*应用程序名称*/
