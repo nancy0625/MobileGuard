@@ -113,6 +113,9 @@ public class AppManagerAdapter extends BaseAdapter {
             viewHolder.mAboutBtn = (TextView) view
                     .findViewById(R.id.tv_about_app);
             view.setTag(viewHolder);
+            viewHolder.mActivity = (TextView) view
+                    .findViewById(R.id.tv_about_activity);
+            view.setTag(viewHolder);
 
 
         }
@@ -135,6 +138,8 @@ public class AppManagerAdapter extends BaseAdapter {
         viewHolder.mShareAppTV.setOnClickListener(listener);
         viewHolder.mUninstallTV.setOnClickListener(listener);
         viewHolder.mAboutBtn.setOnClickListener(listener);
+        viewHolder.mActivity.setOnClickListener(listener);
+
         return view;
     }
     private TextView getTextView(){
@@ -169,6 +174,8 @@ public class AppManagerAdapter extends BaseAdapter {
          LinearLayout mAppOptionLL;
         //操作关于按钮
         TextView mAboutBtn;
+
+        TextView mActivity;
 
     }
     class MyClickListener implements View.OnClickListener{
@@ -208,6 +215,16 @@ public class AppManagerAdapter extends BaseAdapter {
                     } catch (PackageManager.NameNotFoundException e) {
                         e.printStackTrace();
                     }
+                    break;
+                case R.id.tv_about_activity:
+                    // 关于
+
+                    try {
+                        EngineUtils.getpackageName(context,appInfo);
+                    } catch (PackageManager.NameNotFoundException e) {
+                        e.printStackTrace();
+                    }
+
                     break;
             }
         }

@@ -92,6 +92,16 @@
             android:drawableTop="@drawable/about"
             android:text="关于"
             />
+        <View
+            android:layout_width="1px"
+            android:layout_height="match_parent"
+            android:background="@color/black30"/>
+        <TextView
+            android:id="@+id/tv_about_activity"
+            style="@style/tvyellow14sp"
+            android:drawableTop="@drawable/about"
+            android:text="活动"
+            />
 
 </LinearLayout>
 

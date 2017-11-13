@@ -1,10 +1,13 @@
 package cn.edu.gdmec.android.mobileguard.m4appmanager.utils;
 
 
+import android.app.ActivityManager;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.pm.ActivityInfo;
+import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 
@@ -13,18 +16,13 @@ import android.net.Uri;
 
 import android.widget.Toast;
 
-import java.io.BufferedInputStream;
 import java.io.ByteArrayInputStream;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
-import java.io.IOException;
 import java.io.InputStream;
-import java.security.cert.Certificate;
 import java.security.cert.CertificateException;
 import java.security.cert.CertificateFactory;
 import java.security.cert.X509Certificate;
 import java.text.SimpleDateFormat;
+import java.util.List;
 
 import cn.edu.gdmec.android.mobileguard.m4appmanager.entity.AppInfo;
 
@@ -135,6 +133,35 @@ public class EngineUtils {
         } catch (CertificateException e) {
             e.printStackTrace();
         }
+    }
+
+    public static String getpackageName(Context context, AppInfo appInfo) throws PackageManager.NameNotFoundException {
+        Intent intent = new Intent();
+        intent.setType("text/plain");
+        AlertDialog.Builder builder = new AlertDialog.Builder(context);
+        PackageManager packageManager = context.getPackageManager();
+
+        ActivityInfo[] pi = packageManager.getPackageInfo(appInfo.packageName, PackageManager.GET_ACTIVITIES).activities;
+
+        StringBuilder builer = new StringBuilder();
+        for(int i=0;i<pi.length;i++){
+
+            builer.append(pi[i].documentLaunchMode);
+
+        }
+
+
+            builder.setMessage("Activities:"+builer);
+            builder.setPositiveButton("确定", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    dialog.dismiss();
+                }
+            });
+            builder.create().show();
+
+
+        return null;
     }
 
 
