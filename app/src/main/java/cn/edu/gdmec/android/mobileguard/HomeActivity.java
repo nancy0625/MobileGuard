@@ -1,8 +1,8 @@
 package cn.edu.gdmec.android.mobileguard;
 
-import android.app.Activity;
 import android.app.admin.DevicePolicyManager;
 import android.content.ComponentName;
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -10,7 +10,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
 import android.view.KeyEvent;
 import android.view.View;
-import android.view.Window;
 import android.widget.AdapterView;
 import android.widget.GridView;
 import android.widget.Toast;
@@ -23,6 +22,8 @@ import cn.edu.gdmec.android.mobileguard.m2theftguard.receiver.MyDeviceAdminRecei
 import cn.edu.gdmec.android.mobileguard.m2theftguard.utils.MD5Utils;
 import cn.edu.gdmec.android.mobileguard.m3communicationguard.SecurityPhoneActivity;
 import cn.edu.gdmec.android.mobileguard.m4appmanager.AppManagerActivity;
+import cn.edu.gdmec.android.mobileguard.m5virusscan.VirusScanActivity;
+
 
 /**
  * Created by asus on 2017/9/11.
@@ -38,6 +39,7 @@ public class HomeActivity extends AppCompatActivity {
     //声明GridView该控件类似于ListView
     private GridView gv_home;
 //测试
+    private Context context;
     /** 存储手机防盗密码的sp     */
      private SharedPreferences msharedPtrferences;
 
@@ -90,8 +92,12 @@ public class HomeActivity extends AppCompatActivity {
                  case 1://手机卫士
                      startActivity(SecurityPhoneActivity.class);
                      break;
-                 case 2://通讯管家
+                 case 2://软件管家
                      startActivity(AppManagerActivity.class);
+                     break;
+                 case 3://病毒查杀
+
+                     startActivity(VirusScanActivity.class);
                      break;
 
              }
@@ -102,6 +108,7 @@ public class HomeActivity extends AppCompatActivity {
 
 
     }
+
 
 
     //设置密码输入框
@@ -172,7 +179,7 @@ public class HomeActivity extends AppCompatActivity {
      */
     private void savePswd(String affirmPwsd){
         SharedPreferences.Editor edit = msharedPtrferences.edit();
-        edit.putString("PhoneAntiTheftPWD",MD5Utils.encode(affirmPwsd));
+        edit.putString("PhoneAntiTheftPWD", MD5Utils.encode(affirmPwsd));
         edit.commit();
     }
 

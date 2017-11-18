@@ -13,60 +13,58 @@ import cn.edu.gdmec.android.mobileguard.R;
 import cn.edu.gdmec.android.mobileguard.m5virusscan.entity.ScanAppInfo;
 
 /**
- * Created by acer on 2017/11/12.
- *
+ * Created by asus on 2017/11/15.
  */
 
 public class ScanVirusAdapter extends BaseAdapter {
-    private List<ScanAppInfo> mScanAppInfos;
+   private List<ScanAppInfo> mScanAppInfos;
     private Context context;
-    public ScanVirusAdapter(List<ScanAppInfo> scanAppInfo, Context context) {
+    public ScanVirusAdapter(List<ScanAppInfo> scanAppInfo, Context context){
         super();
         mScanAppInfos = scanAppInfo;
         this.context = context;
-
     }
     static class ViewHolder{
         ImageView mAppIconImgv;
         TextView mAppNameTV;
         ImageView mScanIconImgv;
     }
-
     @Override
     public int getCount() {
         return mScanAppInfos.size();
     }
 
-    @Override
-    public Object getItem(int i) {
 
-        return mScanAppInfos.get(i);
+    @Override
+    public Object getItem(int position) {
+        return mScanAppInfos.get(position);
     }
 
+
     @Override
-    public long getItemId(int i) {
-        return i;
+    public long getItemId(int position) {
+        return position;
     }
 
     @Override
     public View getView(int i, View view, ViewGroup viewGroup) {
         ViewHolder holder;
-        if(view == null){
+        if (view==null){
             view = View.inflate(context, R.layout.item_list_applock,null);
             holder = new ViewHolder();
-            holder.mAppIconImgv=(ImageView) view.findViewById(R.id.imgv_appicon);
-            holder.mAppNameTV = (TextView) view.findViewById(R.id.tv_appname);
-            holder.mScanIconImgv = (ImageView) view.findViewById(R.id.imgv_lock);
+            holder.mAppIconImgv = (ImageView)view.findViewById(R.id.imgv_appicon);
+            holder.mAppNameTV = (TextView)view.findViewById(R.id.tv_appname);
+            holder.mScanIconImgv = (ImageView)view.findViewById(R.id.imgv_lock);
             view.setTag(holder);
         }else{
-            holder = (ViewHolder) view.getTag();
+            holder = (ViewHolder)view.getTag();
         }
         ScanAppInfo scanAppInfo = mScanAppInfos.get(i);
-        if(!scanAppInfo.isVirus){
+        if (!scanAppInfo.isVirus){
             holder.mScanIconImgv.setBackgroundResource(R.drawable.blue_right_icon);
             holder.mAppNameTV.setTextColor(context.getResources().getColor(R.color.black));
             holder.mAppNameTV.setText(scanAppInfo.appName);
-        }else{
+        }else {
             holder.mAppNameTV.setTextColor(context.getResources().getColor(R.color.bright_red));
             holder.mAppNameTV.setText(scanAppInfo.appName+"("+scanAppInfo.description+")");
         }

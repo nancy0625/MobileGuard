@@ -3,7 +3,7 @@ package cn.edu.gdmec.android.mobileguard.m5virusscan.entity;
 import android.graphics.drawable.Drawable;
 
 /**
- * Created by acer on 2017/11/11.
+ * Created by asus on 2017/11/15.
  */
 
 public class ScanAppInfo {
@@ -12,5 +12,4 @@ public class ScanAppInfo {
     public String packagename;
     public String description;
     public Drawable appicon;
-
 }
