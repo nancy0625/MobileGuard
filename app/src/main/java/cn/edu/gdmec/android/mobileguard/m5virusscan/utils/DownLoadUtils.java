@@ -45,7 +45,7 @@ public class DownLoadUtils {
         request.setNotificationVisibility(DownloadManager.Request.VISIBILITY_VISIBLE);
         request.setVisibleInDownloadsUi(true);
         //下载路径
-        request.setDestinationInExternalPublicDir( Environment.DIRECTORY_DOWNLOADS.toString(), "antivirus.db" );
+        request.setDestinationInExternalPublicDir(Environment.DIRECTORY_DOWNLOADS.toString(),targetFile);
         //request.setDestinationUri(Uri.parse("/data/data/"+context.getPackageName()+"/files/"));
         //开始下载
         DownloadManager downloadManager = (DownloadManager) context.getSystemService(Context.DOWNLOAD_SERVICE);
@@ -74,13 +74,6 @@ public class DownLoadUtils {
                    Toast.makeText(context.getApplicationContext(),"下载编号"+Id,Toast.LENGTH_LONG).show();
                     /*VirusScanActivity virusScanActivity = new VirusScanActivity();
                     virusScanActivity.update();*/
-
-
-
-
-
-
-
 
                 }
                 context.unregisterReceiver(broadcastReceiver);

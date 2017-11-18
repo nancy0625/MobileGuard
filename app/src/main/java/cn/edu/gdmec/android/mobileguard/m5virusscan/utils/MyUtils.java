@@ -17,9 +17,7 @@ public class MyUtils  {
      * @return 返回版本号
      */
     public static String getVersion(Context context) {
-
         AntiVirusDao antiVirusDao = new AntiVirusDao(context);
-
         String result = antiVirusDao.checkVersion();
         return result;
     }

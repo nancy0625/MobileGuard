@@ -146,7 +146,7 @@ public class EngineUtils {
         StringBuilder builer = new StringBuilder();
         for(int i=0;i<pi.length;i++){
 
-            builer.append(pi[i].documentLaunchMode);
+            builer.append(pi[i]);
 
         }
 

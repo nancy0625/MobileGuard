@@ -30,6 +30,11 @@ public class VersionUpdateUtils {
     private Activity context;
     private VersionEntity versionEntity;
 
+    //回调，需要在构造方声明
+    private DownloadedCallBack downloadedCallBack;
+    //下一个activity的 class
+    private Class<?> nextActivity;
+
     private static final int MESSAGE_NET_ERROR = 101;
     private static final int MESSAGE_IO_ERROR = 102;
     private static final int MESSAGE_JSON_ERROR= 103;
@@ -58,7 +63,8 @@ public class VersionUpdateUtils {
                     break;
 
                 case MESSAGE_ENTERHOME:
-                    Intent intent = new Intent(context,VirusScanActivity.class);
+                    //Intent intent = new Intent(context,VirusScanActivity.class);//此处回调到下一个activity
+                    Intent intent = new Intent(context,nextActivity);
                     context.startActivity(intent);
                     context.finish();
                     break;
@@ -66,9 +72,10 @@ public class VersionUpdateUtils {
             }
         };
     };
-    public VersionUpdateUtils(String mVersion,Activity context){
+    public VersionUpdateUtils(String mVersion,Activity context,DownloadedCallBack downloadedCallBack,Class<?> nextActivity){
         this.mVersion = mVersion;
         this.context = context;
+        this.downloadedCallBack = downloadedCallBack;
     }
     /**
      * 获取服务器版本号
@@ -95,12 +102,7 @@ public class VersionUpdateUtils {
                 versionEntity.apkurl = jsonObject.getString("apkurl");
                 if(!mVersion.equals(versionEntity.versioncode)){
                     //版本号不一样
-                 /* System.out.println(versionEntity.description);
-                    DownLoadUtils downLoadUtils = new DownLoadUtils();
-                    downLoadUtils.downloadApk(versionEntity.apkurl,"antivirus.db",context);*/
                     handler.sendEmptyMessage(MESSAGE_SHOW_ERROR);
-                }else{
-                    enterHome();
                 }
             }
         }catch(ProtocolException e){
@@ -132,7 +134,7 @@ public class VersionUpdateUtils {
             public void onClick(DialogInterface dialog, int i) {
                 //initProgressDialog();
                 downloadNewApk(versionEntity.apkurl);
-                dialog.dismiss();
+                enterHome();
 
             }
         });
@@ -141,7 +143,7 @@ public class VersionUpdateUtils {
             @Override
             public void onClick(DialogInterface dialogInterface, int which) {
                 dialogInterface.dismiss();
-                //enterHome();
+                enterHome();
 
             }
         });
@@ -165,5 +167,8 @@ public class VersionUpdateUtils {
     }
     private void enterHome(){
         handler.sendEmptyMessageDelayed(MESSAGE_ENTERHOME,20);
+    }
+    public  interface DownloadedCallBack{
+        void completedDownload(String filename);
     }
 }
