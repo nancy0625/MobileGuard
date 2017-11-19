@@ -123,19 +123,19 @@ public class VirusScanSpeedActivity extends AppCompatActivity implements View.On
                     String result = antiVirusDao.checkVirus(md5info);
                     msg = Message.obtain();
                     msg.what = SCANNING;
-                    ScanAppInfo scanAppInfo = new ScanAppInfo();
+                    ScanAppInfo scanInfo = new ScanAppInfo();
                     if (result == null){
-                        scanAppInfo.description = "扫描安全";
-                        scanAppInfo.isVirus = false;
+                        scanInfo.description = "扫描安全";
+                        scanInfo.isVirus = false;
                     }else {
-                        scanAppInfo.description = result;
-                        scanAppInfo.isVirus = true;
+                        scanInfo.description = result;
+                        scanInfo.isVirus = true;
                     }
                     process++;
-                    scanAppInfo.packagename = info.packageName;
-                    scanAppInfo.appName = info.applicationInfo.loadLabel(pm).toString();
-                    scanAppInfo.appicon = info.applicationInfo.loadIcon(pm);
-                    msg.obj = scanAppInfo;
+                    scanInfo.packagename = info.packageName;
+                    scanInfo.appName = info.applicationInfo.loadLabel(pm).toString();
+                    scanInfo.appicon = info.applicationInfo.loadIcon(pm);
+                    msg.obj = scanInfo;
                     msg.arg1 = process;
                     mHandler.sendMessage(msg);
                     try {
@@ -193,6 +193,7 @@ public class VirusScanSpeedActivity extends AppCompatActivity implements View.On
                     //扫描完成
                     finish();
                 }else if (process > 0 & process < total & isStop == false){
+                    mScanningIcon.clearAnimation();
                     //取消扫描
                     flag = false;
                     //更换背景图盘
@@ -204,8 +205,6 @@ public class VirusScanSpeedActivity extends AppCompatActivity implements View.On
                     scanVirus();
                     //更换背景图片
                     mCancleBtn.setBackgroundResource(R.drawable.cancle_scan_btn_selector);
-
-
                 }
                 break;
         }
@@ -213,7 +212,7 @@ public class VirusScanSpeedActivity extends AppCompatActivity implements View.On
     }
   @Override
     protected void onDestroy(){
-        flag = true;
+        flag = false;
         super.onDestroy();
     }
 }

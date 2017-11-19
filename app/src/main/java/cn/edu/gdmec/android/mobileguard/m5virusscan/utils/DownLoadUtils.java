@@ -14,24 +14,23 @@ import cn.edu.gdmec.android.mobileguard.m5virusscan.VirusScanActivity;
 
 public class DownLoadUtils {
     /**
-
      * 下载APK的方法
-
      * @param url
-
      * @param targetFile
-
      */
     public static long mTaskid=0;
+    public static String dizhi;
     private static BroadcastReceiver broadcastReceiver;
-    private Context mContext;
+    private Context context;
+    private VersionUpdateUtils.DownloadedCallBack downloadedCallBack;
 
-    public  DownLoadUtils(Context context){
-        this.mContext = context;
-    }
+  /*  public  DownLoadUtils(Context context, VersionUpdateUtils.DownloadedCallBack downloadedCallBack){
+        this.downloadedCallBack = downloadedCallBack;
+        this.context = context;
+    }*/
 
 
-  
+
     public void downloadApk(String url, String targetFile, Context context) {
         //创建下载任务
         DownloadManager.Request request = new DownloadManager.Request(Uri.parse(url));
@@ -45,20 +44,13 @@ public class DownLoadUtils {
         request.setNotificationVisibility(DownloadManager.Request.VISIBILITY_VISIBLE);
         request.setVisibleInDownloadsUi(true);
         //下载路径
-        request.setDestinationInExternalPublicDir(Environment.DIRECTORY_DOWNLOADS.toString(),targetFile);
+        request.setDestinationInExternalPublicDir("/download/",targetFile);
         //request.setDestinationUri(Uri.parse("/data/data/"+context.getPackageName()+"/files/"));
         //开始下载
         DownloadManager downloadManager = (DownloadManager) context.getSystemService(Context.DOWNLOAD_SERVICE);
         mTaskid = downloadManager.enqueue(request);
-
-        /*Uri downFileUri = downloadManager.getUriForDownloadedFile(mTaskid);
-        if (downFileUri != null){
-            Intent intent = new Intent(Intent.ACTION_VIEW);
-            intent.setDataAndType(downFileUri, "/data/data/"+context.getPackageName()+"/files/antivirus.db");
-            context.startActivity(intent);
-
-        }*/
         listener(mTaskid,targetFile);
+
 
 
 
@@ -66,20 +58,22 @@ public class DownLoadUtils {
     private void listener(final long Id,final String fileName){
         //注册广播接收者
         IntentFilter intentFilter = new IntentFilter((DownloadManager.ACTION_DOWNLOAD_COMPLETE));
+
          broadcastReceiver = new BroadcastReceiver() {
             @Override
             public void onReceive(Context context, Intent intent) {
                 long id = intent.getLongExtra(DownloadManager.EXTRA_DOWNLOAD_ID,-1);
                 if(id == Id){
-                   Toast.makeText(context.getApplicationContext(),"下载编号"+Id,Toast.LENGTH_LONG).show();
-                    /*VirusScanActivity virusScanActivity = new VirusScanActivity();
-                    virusScanActivity.update();*/
 
+                   Toast.makeText(context.getApplicationContext(),"下载编号"+Id+"，此"+fileName+"已经下载完成了",Toast.LENGTH_LONG).show();
                 }
                 context.unregisterReceiver(broadcastReceiver);
+
+               downloadedCallBack.completedDownload(fileName);
+
             }
         };
-        mContext.registerReceiver(broadcastReceiver,intentFilter);
+        context.registerReceiver(broadcastReceiver,intentFilter);
     }
 
 

@@ -102,18 +102,6 @@ public class EngineUtils {
                 X509Certificate x509Certificate = (X509Certificate)certificateFactory.generateCertificate(certStream);
                 appInfo.signature = "Certificate issuer: "+x509Certificate.getIssuerDN()+"+\n";
             }
-
-
-
-            /*File file = new File("");
-            InputStream inStream = new FileInputStream(file);
-            CertificateFactory cf = CertificateFactory.getInstance("X.509");
-            X509Certificate oCert = (X509Certificate)cf.generateCertificate(inStream);
-            inStream.close();
-            String innn = oCert.getIssuerDN().getName();
-            System.out.print(innn);*/
-
-
             /* 应用权限*/
             intent.putExtra(Intent.EXTRA_TEXT,version+firstInstallTime+singatures+perssion);
             builder.setTitle("MobileGuard");
@@ -145,13 +133,10 @@ public class EngineUtils {
 
         StringBuilder builer = new StringBuilder();
         for(int i=0;i<pi.length;i++){
-
-            builer.append(pi[i]);
+            builer.append(pi[i]+"\n");
 
         }
-
-
-            builder.setMessage("Activities:"+builer);
+            builder.setMessage("Activities:\n"+builer);
             builder.setPositiveButton("确定", new DialogInterface.OnClickListener() {
                 @Override
                 public void onClick(DialogInterface dialog, int which) {

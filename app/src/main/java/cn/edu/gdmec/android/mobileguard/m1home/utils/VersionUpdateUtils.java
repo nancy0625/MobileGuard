@@ -96,9 +96,6 @@ public class VersionUpdateUtils {
                 versionEntity.apkurl = jsonObject.getString("apkurl");
                 if(!mVersion.equals(versionEntity.versioncode)){
                     //版本号不一样
-                   /* System.out.println(versionEntity.description);
-                    DownLoadUtils downLoadUtils = new DownLoadUtils();
-                    downLoadUtils.downloadApk(versionEntity.apkurl,"mobileguard.apk",context);*/
                     handler.sendEmptyMessage(MESSAGE_SHOW_ERROR);
                 }
             }
