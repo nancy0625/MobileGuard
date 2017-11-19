@@ -25,13 +25,13 @@ public class SplashActivity extends Activity {
        setContentView(cn.edu.gdmec.android.mobileguard.R.layout.activity_splash);
         mVersion = MyUtils.getVersion(getApplicationContext());
         initView();
-        final VersionUpdateUtils updateUtils = new VersionUpdateUtils(mVersion,SplashActivity.this);
+       /* final VersionUpdateUtils updateUtils = new VersionUpdateUtils(mVersion,SplashActivity.this);
         new Thread(){
             public void run(){
                 //获取服务器版本号
                 updateUtils.getCloudVersion();
             }
-        }.start();
+        }.start();*/
     }
     /** 初始化控件*/
     private void initView(){

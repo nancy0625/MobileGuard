@@ -96,7 +96,6 @@ public class HomeActivity extends AppCompatActivity {
                      startActivity(AppManagerActivity.class);
                      break;
                  case 3://病毒查杀
-
                      startActivity(VirusScanActivity.class);
                      break;
 
