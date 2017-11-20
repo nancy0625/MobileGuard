@@ -21,12 +21,12 @@ import cn.edu.gdmec.android.mobileguard.m6cleancache.entity.CacheInfo;
 public class CacheCleanAdapter extends BaseAdapter {
   private Context context;
     private List<CacheInfo> cacheInfos;
-    private LayoutInflater inflater;
+
 
     public CacheCleanAdapter(Context context,List<CacheInfo> cacheInfos) {
         this.context = context;
         this.cacheInfos = cacheInfos;
-        inflater = LayoutInflater.from(context);
+
     }
 
     @Override
@@ -54,6 +54,7 @@ public class CacheCleanAdapter extends BaseAdapter {
             convertView =convertView.inflate(context, R.layout.item_cacheclean_list,null);
             viewHolder.mAppIconImgv = (ImageView)convertView.findViewById(R.id.imgv_appicon_cacheclean);
             viewHolder.mAppNameTV = (TextView)convertView.findViewById(R.id.tv_appname_cacheclean);
+            viewHolder.mCacheSizeTV = (TextView)convertView.findViewById(R.id.tv_appsize_cacheclean);
             convertView.setTag(viewHolder);
         }else {
             viewHolder = (ViewHolder) convertView.getTag();

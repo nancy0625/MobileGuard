@@ -145,20 +145,13 @@ public class CacheClearListActivity extends AppCompatActivity implements View.On
         try {
             Method method = PackageManager.class.getDeclaredMethod(
                     "getPackageSizeInfo",String.class,
-                    IPackageDataObserver.class);
-           /* try {
-                //method.invoke(pm,info.packageName,new MyPackObserver(info));
-            } catch (IllegalAccessException e) {
-                e.printStackTrace();
-            } catch (InvocationTargetException e) {
-                e.printStackTrace();
-            }*/
-
-        } catch (NoSuchMethodException e) {
+                    IPackageStatsObserver.class);
+                method.invoke(pm,info.packageName,new MyPackObserver(info));
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }
-   /* private class MyPackObserver extends
+    private class MyPackObserver extends
             android.content.pm.IPackageStatsObserver.Stub{
         private PackageInfo info;
 
@@ -179,7 +172,7 @@ public class CacheClearListActivity extends AppCompatActivity implements View.On
                 cacheMemory += cachesize;
             }
         }
-    }*/
+    }
     @Override
     public void onClick(View view) {
         switch (view.getId()){
