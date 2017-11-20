@@ -18,4 +18,7 @@
     <color name="light_blue">#1671CE</color>
     <color name="dark_gray">#ff999999</color>
     <color name="bright_red">#F22723</color>
+    <!--缓存清理-->
+    <color name="light_rose_red">#F73CA7</color>
+    <color name="rose_red">#E72993</color>
 </resources>
