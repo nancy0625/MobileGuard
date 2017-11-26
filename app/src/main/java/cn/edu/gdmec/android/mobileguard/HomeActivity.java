@@ -25,6 +25,8 @@ import cn.edu.gdmec.android.mobileguard.m4appmanager.AppManagerActivity;
 import cn.edu.gdmec.android.mobileguard.m5virusscan.VirusScanActivity;
 import cn.edu.gdmec.android.mobileguard.m6cleancache.CacheClearListActivity;
 import cn.edu.gdmec.android.mobileguard.m6cleancache.CleanCacheActivity;
+import cn.edu.gdmec.android.mobileguard.m8trafficmonitor.OperatorSetActivity;
+import cn.edu.gdmec.android.mobileguard.m8trafficmonitor.TrafficMonitoringActivity;
 
 
 /**
@@ -103,7 +105,9 @@ public class HomeActivity extends AppCompatActivity {
                  case 4://缓存清理
                      startActivity(CacheClearListActivity.class);
                      break;
-
+                 case 6:
+                     startActivity(OperatorSetActivity.class);
+                     break;
              }
          }
      });
