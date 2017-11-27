@@ -11,6 +11,7 @@ import android.telephony.SmsManager;
 import android.telephony.SmsMessage;
 import android.text.TextUtils;
 import android.text.format.Formatter;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -45,6 +46,7 @@ public class TrafficMonitoringActivity extends AppCompatActivity implements View
         setContentView(R.layout.activity_traffic_monitor);
         mSP = getSharedPreferences("config",MODE_PRIVATE);
         boolean flag = mSP.getBoolean("isset_operator",false);
+
         //如果没有设置运营商信息则进入信息设置页面
         if (!flag){
             startActivity(new Intent(this,OperatorSetActivity.class));
@@ -185,10 +187,12 @@ public class TrafficMonitoringActivity extends AppCompatActivity implements View
             SharedPreferences.Editor editor = mSP.edit();
                 System.out.print("----"+left);
                 editor.putLong("totalflow",used + left);
-                editor.putLong("usedFlow",used + beyond);
+                editor.putLong("usedflow",used + beyond);
                 editor.commit();
-                mTotalTV.setText("本月流量："+ Formatter.formatFileSize(context,(used + left)));
-                mUsedTV.setText("本月已用："+Formatter.formatFileSize(context,(used + beyond)));
+                mTotalTV.setText("本月流量："
+                        + Formatter.formatFileSize(context,(used + left)));
+                mUsedTV.setText("本月已用："
+                        +Formatter.formatFileSize(context,(used + beyond)));
         }
     }
     }

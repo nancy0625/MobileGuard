@@ -34,7 +34,8 @@ public class TrafficMonitoringService extends Service {
     public void onCreate(){
         super.onCreate();
         mOldRxBytes = TrafficStats.getMobileRxBytes();
-        mOldTxBytes = TrafficStats.getTotalTxBytes();
+        //mOldTxBytes = TrafficStats.getTotalTxBytes();
+        mOldTxBytes = TrafficStats.getMobileTxBytes();
         dao = new TrafficDao(this);
         mSp = getSharedPreferences("config",MODE_PRIVATE);
         mThread.start();
@@ -93,7 +94,8 @@ public class TrafficMonitoringService extends Service {
     };
     @Override
     public void onDestroy(){
-        if(mThread != null & mThread.isInterrupted()){
+        if(mThread != null & !mThread.isInterrupted()){
+            //if(mThread != null & mThread.isInterrupted()){
             flag = false;
             mThread.interrupt();
             mThread = null;
