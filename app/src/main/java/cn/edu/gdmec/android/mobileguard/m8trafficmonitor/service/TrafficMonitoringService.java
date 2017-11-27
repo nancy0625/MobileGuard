@@ -59,7 +59,7 @@ public class TrafficMonitoringService extends Service {
             Calendar calendar = Calendar.getInstance();//得到日历
             calendar.setTime(date);//把当前时间赋给日历
             if (calendar.DAY_OF_MONTH == 1 & calendar.HOUR_OF_DAY == 0
-                    & calendar.MINUTE <1 & calendar.SECOND < 30){
+                    & calendar.MINUTE < 1 & calendar.SECOND < 30){
                 usedFlow = 0;
             }
             SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM--dd");

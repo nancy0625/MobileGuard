@@ -83,10 +83,10 @@ public class TrafficMonitoringActivity extends AppCompatActivity implements View
         long totalflow = mSP.getLong("totalflow",0);
         long usedflow = mSP.getLong("usedflow",0);
         if (totalflow > 0 & usedflow >=0){
-            float scale = usedflow/totalflow;
+            float scale = usedflow / totalflow;
             if (scale > 0.9){
                 mRemindTMGV.setEnabled(false);
-                mRemindTV.setText("您的套餐流量即将用完");
+                mRemindTV.setText("您的套餐流量即将用完! ");
             }else {
                 mRemindTMGV.setEnabled(true);
                 mRemindTV.setText("本月流量充足请放心使用");
