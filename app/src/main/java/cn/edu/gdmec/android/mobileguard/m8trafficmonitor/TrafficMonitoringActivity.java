@@ -50,7 +50,8 @@ public class TrafficMonitoringActivity extends AppCompatActivity implements View
             startActivity(new Intent(this,OperatorSetActivity.class));
             finish();
         }
-        if (!SystemInfoUtils.isServiceRunning(this,
+        if (!SystemInfoUtils
+                .isServiceRunning(this,
                 "cn.edu.gdmec.android.mobileguard.m8trafficmonitor.service.TrafficMonitoringService"
                 )){
             startService(new Intent(this, TrafficMonitoringService.class));
@@ -92,8 +93,8 @@ public class TrafficMonitoringActivity extends AppCompatActivity implements View
                 mRemindTV.setText("本月流量充足请放心使用");
             }
         }
-        mTotalTV.setText("本月流量："+Formatter.formatFileSize(this,totalflow));
-        mUsedTV.setText("本月已用："+Formatter.formatFileSize(this,usedflow));
+        mTotalTV.setText("本月流量：" + Formatter.formatFileSize(this,totalflow));
+        mUsedTV.setText("本月已用：" + Formatter.formatFileSize(this,usedflow));
         dao = new TrafficDao(this);
         Date date = new Date();
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
@@ -134,10 +135,10 @@ public class TrafficMonitoringActivity extends AppCompatActivity implements View
                         smsManager.sendTextMessage("10086",null,"CXLL",null,null);
                         break;
                     case 2:
-                        smsManager.sendTextMessage("10010",null,"LLCX",null,null);
-                        break;
+                      /*  smsManager.sendTextMessage("10010",null,"LLCX",null,null);
+                        break;*/
                     case 3:
-                        smsManager.sendTextMessage("10000",null,"",null,null);
+                       // smsManager.sendTextMessage("10000",null,"",null,null);
 
                 }
         }

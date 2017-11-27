@@ -37,7 +37,8 @@ public class OperatorSetActivity extends AppCompatActivity implements View.OnCli
         mLeftImgv.setOnClickListener(this);
         mLeftImgv.setImageResource(R.drawable.back);
         mSelectSP = (Spinner)findViewById(R.id.spinner_operator_select);
-        mSelectadapter = new ArrayAdapter(this,R.layout.item_spinner_operatorset,R.id.tv_provice,operators);
+        mSelectadapter = new ArrayAdapter(this,
+                R.layout.item_spinner_operatorset,R.id.tv_provice,operators);
         mSelectSP.setAdapter(mSelectadapter);
         findViewById(R.id.btn_operator_finish).setOnClickListener(this);
 

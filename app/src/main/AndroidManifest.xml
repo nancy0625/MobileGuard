@@ -126,18 +126,17 @@
         <!--流量管理-->
         <activity android:name=".m8trafficmonitor.TrafficMonitoringActivity"/>
         <activity android:name=".m8trafficmonitor.OperatorSetActivity"/>
-        <service android:name=".m8trafficmonitor.service.TrafficMonitoringService"
-            android:persistent="true">
+
+     <!-- <service android:name=".m8trafficmonitor.service.TrafficMonitoringService"
+            android:enabled="true"
+            android:exported="true">
 
         </service>
-        <receiver android:name=".m8trafficmonitor.reciever.BootCompleteReciever">
-            <intent-filter>
-                <action android:name="android.intent.action.BOOT_COMPLETED"/>
-            </intent-filter>
-        </receiver>
+        <receiver android:name=".m8trafficmonitor.reciever.BootCompleteReciever"
+            android:enabled="true"
+            android:exported="true">
 
-
-
+        </receiver>-->
     </application>
 
 </manifest>

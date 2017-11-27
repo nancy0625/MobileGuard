@@ -26,7 +26,8 @@ public class TrafficDao {
     public long getMebileGPRS(String dataString){
         SQLiteDatabase db = helper.getReadableDatabase();
         long gprs = 0;
-        Cursor cursor = db.rawQuery("select gprs from traffic where date=?",new String[]{ "datetime(" + dataString + ")" });
+        Cursor cursor = db.rawQuery("select gprs from traffic where date=?",
+                new String[]{ "datetime(" + dataString + ")" });
 
         if(cursor.moveToNext()) {
             String gprsStr = cursor.getString(0);
@@ -52,7 +53,7 @@ public class TrafficDao {
         values.put("gprs",String.valueOf(gprs));
         values.put("date","datetime(" + dataString + ")");
         db.insert("traffic",null,values);
-    }
+}
     //修改今天的数据
     public void UpdateTodayGPRS(long gprs){
         SQLiteDatabase db = helper.getWritableDatabase();
@@ -62,6 +63,7 @@ public class TrafficDao {
         ContentValues values = new ContentValues();
         values.put("gprs",String.valueOf(gprs));
         values.put("date","datetime(" + dataString + ")");
-        db.update("traffic",values,"date=?",new String[] { "datetime(" + dataString + ")"});
+        db.update("traffic", values, "date=?",new String[] { "datetime("
+                + dataString + ")"});
     }
 }
