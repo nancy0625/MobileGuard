@@ -26,19 +26,20 @@ public class TrafficDao {
     public long getMebileGPRS(String dataString){
         SQLiteDatabase db = helper.getReadableDatabase();
         long gprs = 0;
-        Cursor cursor = db.rawQuery("select gprs from traffic where date=?",new String[]{"datetime(" + dataString + ")"});
+        Cursor cursor = db.rawQuery("select gprs from traffic where date=?",new String[]{ "datetime(" + dataString + ")" });
 
-        if(cursor.moveToNext()){
+        if(cursor.moveToNext()) {
             String gprsStr = cursor.getString(0);
-            if (!TextUtils.isEmpty(gprsStr)){
+            if (!TextUtils.isEmpty(gprsStr))
                 gprs = Long.parseLong(gprsStr);
-            }else{
+        } else{
                 gprs = -1;
             }
+            return gprs;
         }
-        return gprs;
 
-    }
+
+
     //插入今天的数据
     public void insertTodayGPRS(long gprs){
         SQLiteDatabase db = helper.getReadableDatabase();
