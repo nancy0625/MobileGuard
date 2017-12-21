@@ -45,26 +45,27 @@ public class AntiVirusDao {
     }
     public static String checkVersion(){
 
-        String major = null;
-        String minor = null;
-        String build = null;
+        String dbVersion = null;
 
-        //打开病毒的数据库
-        //Log.i(context.getPackageName(),"地址错误");
-        SQLiteDatabase db = SQLiteDatabase.openDatabase(
-                dbname,null,
-                SQLiteDatabase.OPEN_READONLY);
+        // 打开病毒数据库
+        Log.i("TAG","ddddddddddddddddddd");
+        SQLiteDatabase db = SQLiteDatabase.openDatabase(dbname, null,SQLiteDatabase.OPEN_READONLY);
 
-        Cursor cursor = db.rawQuery("select * from version ",null);
 
-        if (cursor.moveToNext()){
-            major = cursor.getString(0);
-            minor = cursor.getString(1);
-            build = cursor.getString(2);
+        Cursor cursor = db.rawQuery("select major||'.'||minor||'.'||build from version",null);
+
+
+
+        if (cursor.moveToNext()) {
+
+            dbVersion = cursor.getString(0);
+
         }
+
         cursor.close();
+
         db.close();
-       String  version = major+"." + minor +"."+ build;
-        return version;
+
+        return dbVersion;
     }
 }

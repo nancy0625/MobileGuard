@@ -24,6 +24,8 @@ public class AppInfo {
     public boolean isInRoom;
     /*是否是用户应用*/
     public boolean isUserApp;
+   /*应用程序是否锁住*/
+   public boolean isLock;
     /*是否选中，默认都为false*/
     public boolean isSelected = false;
     /*拿到App位置字符串*/

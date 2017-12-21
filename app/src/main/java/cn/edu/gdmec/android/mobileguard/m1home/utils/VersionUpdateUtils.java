@@ -126,7 +126,7 @@ public class VersionUpdateUtils {
 
     private void showUpdateDialog(final VersionEntity versionEntity) {
         AlertDialog.Builder builder = new AlertDialog.Builder(context);
-        builder.setTitle("检测有新版本：" + versionEntity.versioncode);
+        builder.setTitle("检测到有新版本：" + versionEntity.versioncode);
         builder.setMessage(versionEntity.description);
         builder.setCancelable(false);
         builder.setIcon( R.mipmap.ic_launcher_round);
@@ -134,7 +134,7 @@ public class VersionUpdateUtils {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
                 downloadNewApk(versionEntity.apkurl);
-                enterHome();
+                //enterHome();
             }
         });
         builder.setNegativeButton("暂不升级", new DialogInterface.OnClickListener() {

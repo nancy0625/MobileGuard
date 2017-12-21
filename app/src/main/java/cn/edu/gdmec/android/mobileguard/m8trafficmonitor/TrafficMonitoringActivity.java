@@ -1,11 +1,14 @@
 package cn.edu.gdmec.android.mobileguard.m8trafficmonitor;
 
 import android.content.BroadcastReceiver;
+import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.content.ServiceConnection;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.os.IBinder;
 import android.support.v7.app.AppCompatActivity;
 import android.telephony.SmsManager;
 import android.telephony.SmsMessage;
@@ -41,6 +44,7 @@ public class TrafficMonitoringActivity extends AppCompatActivity implements View
     private TextView mRemindTV;
     private CorrectFlowReceiver receiver;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -60,6 +64,7 @@ public class TrafficMonitoringActivity extends AppCompatActivity implements View
             startService(new Intent(this, TrafficMonitoringService.class));
 
         }
+
         initView();
         registReceiver();
         initData();
@@ -141,8 +146,8 @@ public class TrafficMonitoringActivity extends AppCompatActivity implements View
                         smsManager.sendTextMessage("10086", null, "CXLL", null, null);
                         break;
                     case 2:
-                      /*  smsManager.sendTextMessage("10010",null,"LLCX",null,null);
-                        break;*/
+                       smsManager.sendTextMessage("10010",null,"CXLL",null,null);
+                        break;
                     case 3:
                         // smsManager.sendTextMessage("10000",null,"",null,null);
 
@@ -232,6 +237,7 @@ public class TrafficMonitoringActivity extends AppCompatActivity implements View
             receiver = null;
         }
         super.onDestroy();
+
     }
 
 }

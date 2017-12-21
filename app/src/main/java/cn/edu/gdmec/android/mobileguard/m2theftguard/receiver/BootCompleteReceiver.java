@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.Intent;
 
 import cn.edu.gdmec.android.mobileguard.App;
+import cn.edu.gdmec.android.mobileguard.m9advancedtools.service.AppLockService;
 
 /**
  * Created by acer on 2017/10/16.
@@ -15,5 +16,7 @@ public class BootCompleteReceiver extends BroadcastReceiver{
     @Override
     public void onReceive(Context context, Intent intent) {
         ((App)(context.getApplicationContext())).correctSIM();//初始化
+        //启动服务程序锁服务
+        context.startService(new Intent(context, AppLockService.class));
     }
 }

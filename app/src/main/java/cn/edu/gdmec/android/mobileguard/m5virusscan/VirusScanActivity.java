@@ -25,7 +25,7 @@ import cn.edu.gdmec.android.mobileguard.m5virusscan.dao.AntiVirusDao;
 public class VirusScanActivity extends AppCompatActivity implements View.OnClickListener {
     private TextView mLastTimeTV;
     private SharedPreferences mSP;
-    private String mVersion;
+
     private TextView mDbVersionTV;
 
     @Override
@@ -49,7 +49,7 @@ public class VirusScanActivity extends AppCompatActivity implements View.OnClick
         public void handleMessage(Message msg) {
             if(msg.what==0) {
                 AntiVirusDao dao = new AntiVirusDao(VirusScanActivity.this);
-                mVersion = dao.checkVersion();
+               String mVersion = dao.checkVersion();
                 mDbVersionTV = (TextView) findViewById(R.id.tv_scan_version);
                 mDbVersionTV.setText("病毒数据库版本:" + mVersion);
                 UpdateDb(mVersion);
@@ -60,7 +60,7 @@ public class VirusScanActivity extends AppCompatActivity implements View.OnClick
     VersionUpdateUtils.DownloadCallback downloadCallback = new VersionUpdateUtils.DownloadCallback() {
         @Override
         public void afterDownload(String filename) {
-            copyDB("antivirus.db", Environment.getExternalStoragePublicDirectory("/download/").getPath());
+            copyDB("antivirus.db", Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS).getPath());
         }
     };
     final private void UpdateDb(String localDbVersion){
@@ -115,7 +115,6 @@ public class VirusScanActivity extends AppCompatActivity implements View.OnClick
         mLeftImgv.setOnClickListener(this);
         mLeftImgv.setImageResource(R.drawable.back);
         mLastTimeTV=(TextView)findViewById(R.id.tv_lastscantime);
-        findViewById(R.id.rl_allscanvirus).setOnClickListener(this);
         findViewById(R.id.rl_allscanvirus).setOnClickListener(this);
         findViewById(R.id.rl_cloudscanvirus).setOnClickListener(this);
 

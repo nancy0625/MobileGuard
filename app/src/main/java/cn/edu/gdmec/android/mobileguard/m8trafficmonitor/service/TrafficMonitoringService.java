@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.net.TrafficStats;
+import android.os.Binder;
 import android.os.IBinder;
 import android.support.annotation.Nullable;
 
@@ -12,6 +13,7 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 
+import cn.edu.gdmec.android.mobileguard.m8trafficmonitor.TrafficMonitoringActivity;
 import cn.edu.gdmec.android.mobileguard.m8trafficmonitor.db.dao.TrafficDao;
 
 /**
@@ -26,20 +28,21 @@ public class TrafficMonitoringService extends Service {
     private long usedFlow;
     boolean flag = true;
 
-    @Nullable
+
     @Override
     public IBinder onBind(Intent intent) {
         return null;
     }
 
+
     @Override
     public void onCreate() {
         super.onCreate();
         mOldRxBytes = TrafficStats.getMobileRxBytes();
-        //mOldTxBytes = TrafficStats.getTotalTxBytes();
         mOldTxBytes = TrafficStats.getMobileTxBytes();
         dao = new TrafficDao(this);
         mSp = getSharedPreferences("config", MODE_PRIVATE);
+        usedFlow = mSp.getLong("usedflow",0);
         mThread.start();
     }
 
