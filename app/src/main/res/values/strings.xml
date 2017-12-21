@@ -6,4 +6,7 @@
     <string name="sample_device_admin_description">我是设备超级管理员，开启我之后可以清除数据，远程锁屏。</string>
     <string name="sample_device_admin">手机卫士管理器</string>
     <string name="_operatorset_string">"仅一次简单设置，以后即可便捷矫正流量，时刻保持与运营商保持精准同步"</string>
+
+    
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>
