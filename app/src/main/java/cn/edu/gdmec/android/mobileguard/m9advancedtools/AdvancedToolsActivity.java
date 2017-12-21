@@ -43,7 +43,7 @@ public class AdvancedToolsActivity extends AppCompatActivity implements View.OnC
                 finish();
                 break;
             case R.id.advanceview_numbelongs:
-                //进入归属地查询页面
+                //进入归属地查询页面。
                 startActivity(NumBelongtoActivity.class);
                 break;
             case R.id.advanceview_applock:
